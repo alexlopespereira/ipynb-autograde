@@ -1,0 +1,124 @@
+#@title Init Cell - Execute-me!!!
+import sys
+from datetime import datetime
+import requests
+import time
+from requests.utils import quote
+import types
+import numpy as np
+import pandas as pd
+
+# url     = 'https://docs.google.com/forms/d/e/1FAIpQLSeASSC8-w8FmfodZ4lBnuSEAvYuE4vatIBowLIREG1f-2pIpA/formResponse?usp=pp_url&entry.1986154915=mbacd&entry.513694412=2021&entry.1914621244=CienciaDeDados'
+# log_url = 'https://docs.google.com/forms/d/e/1FAIpQLSfRtpAVNRGKDmTxh9FhJKucyNMGeQ8Es_JRyG_HcUUVmM_zQg/formResponse?usp=pp_url&entry.1956860070=mbacd&entry.205464053=2021&entry.1885440499=CienciaDeDados'
+
+def format_values(values, data_type="EXERCISE"):
+    result = {}
+    if data_type == "EXERCISE":
+        return {
+        "entry.1269959472": values['student_id'],
+        "entry.1799867692": str(values['exercise_number']).replace(".", "_"),
+        "entry.886231469": values['exercise_score'],
+        "entry.1342537331": values['id']
+        }
+    elif data_type == "LOG":
+        return {
+        "entry.39852643": values['student_id'],
+        "entry.1437170782": str(values['exercise_number']).replace(".", "_"),
+        "entry.304785533": values['log'],
+        "entry.2060734065": values['errors']
+        }
+    elif data_type == "ERROR":
+        return None
+    else:
+        return None
+    
+
+def send_form(url, data):
+    count = 0
+    while count < 3:
+        count += 1
+        try:
+          r = requests.post(url, data=data)
+          break
+        except:
+          print("Error Occured!")
+          time.sleep(2)
+
+            
+def validate(func, inputs, outfunc, outputs, exercise_number):
+  global log_url, results_url
+  global session_log
+  student_email=!gcloud config get-value account
+  if not student_email or 'unset' in student_email[0]:
+    !gcloud auth login
+    student_email=!gcloud config get-value account
+  current_log = ""
+  !rm -f ./history.txt
+  %history -o -f history.txt
+  with open("history.txt") as file:
+    current_log = file.read()
+  try:
+    if not session_log:
+      session_log = ""
+  except:
+    session_log = ""
+
+  with open("errors.txt") as file:
+    current_errors = file.read()
+  # Clear errors
+  open('errors.txt', 'w').close()
+  
+  tmp_log = f"{current_log}"
+  current_log = current_log.replace(session_log, "")
+  session_log = tmp_log
+  logvalues = {"exercise_number": exercise_number, "student_id": student_email[0],
+                "log": f"{current_log}", "errors": f"{current_errors}"}
+  log_data = format_values(logvalues, "LOG")
+
+  send_form(f"{log_url}&emailAddress={quote(str(student_email[0]))}", log_data)
+        
+  answers_status = True
+  for k, v in zip(inputs, outputs):
+    ans = func(*k)
+    outans = outfunc(ans)
+    try:
+        if isinstance(ans, pd.DataFrame) and isinstance(v, pd.DataFrame):
+            result = outans.equals(v)
+        elif (isinstance(ans, np.ndarray) or isinstance(outans, np.ndarray)) and isinstance(v, np.ndarray):
+            result = np.array_equal(outans, v)
+        else:
+            result = outfunc(ans) == v
+        if not result:
+          answers_status = False
+          validate_output = f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}"
+    except ValueError as ve:
+        print(ve)
+        pass
+        if not result.all():
+          answers_status = False
+          validate_output = f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}"
+
+  if answers_status:
+      exercise_score = True
+      values = {"exercise_number": exercise_number, "student_id": student_email[0],
+                "exercise_points": 1, "exercise_score": exercise_score, 
+                "id": f"{student_email[0]}_{exercise_number}"}
+      final_data = format_values(values, "EXERCISE")
+      send_form(f"{results_url}&emailAddress={quote(str(student_email[0]))}", final_data)
+      return True, "Parabéns!"
+  else:
+      return False, validate_output
+
+# This saves all errors to a file called errors.txt
+def init_log():
+    if not hasattr(get_ipython(), '_showtraceback_orig'):
+        my_stderr = sys.stderr = open('errors.txt', 'w')  # redirect stderr to file
+        get_ipython()._showtraceback_orig = get_ipython()._showtraceback
+
+        def _showtraceback(self, etype, evalue, stb):
+            my_stderr.write(datetime.now().strftime('\n' + "%m/%d/%Y, %H:%M:%S") + '\n')
+            my_stderr.write(self.InteractiveTB.stb2text(stb) + '\n')
+            my_stderr.flush()
+            self._showtraceback_orig(etype, evalue, stb)
+
+        get_ipython()._showtraceback = types.MethodType(_showtraceback, get_ipython())
