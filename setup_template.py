@@ -1,8 +1,8 @@
 from distutils.core import setup
 
 setup(
-    name="ipynb-autograde",
-    packages=['ipynb-autograde'],
+    name="ipynb_autograde",
+    packages=['ipynb_autograde'],
     version="${TAG}",
     license="GNU Lesser General Public License v3.0",
     description="Autograde for ipynb",
@@ -26,7 +26,7 @@ setup(
     install_requires=[
         'setuptools>=57.0.0',
         'requests>=2.25.1',
-        'numpy>=1.20.3',
-        'pandas>=1.2.4'
+        'numpy>=1.19.5',
+        'pandas>=1.1.5'
       ],
 )
