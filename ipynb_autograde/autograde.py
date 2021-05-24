@@ -47,12 +47,13 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
   global log_url
   global results_url
   global session_log
-  student_email = cap.stdout
+  ip = get_ipython()
+  student_email = ip.getoutput("gcloud config get-value account")[0]
 
   current_log = ""
   if os.path.exists("./history.txt"):
       os.remove("./history.txt")
-  get_ipython().magic("history -o -f ./history.txt")
+  ip.magic("history -o -f ./history.txt")
 
   with open("history.txt") as file:
     current_log = file.read()
@@ -110,10 +111,10 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
 
 # This saves all errors to a file called errors.txt
 def init_log():
-    get_ipython().run_cell_magic("capture", "cap", "--no-stderr")
-    if not hasattr(get_ipython(), '_showtraceback_orig'):
+    ip = get_ipython()
+    if not hasattr(ip, '_showtraceback_orig'):
         my_stderr = sys.stderr = open('errors.txt', 'w')  # redirect stderr to file
-        get_ipython()._showtraceback_orig = get_ipython()._showtraceback
+        ip._showtraceback_orig = ip._showtraceback
 
         def _showtraceback(self, etype, evalue, stb):
             my_stderr.write(datetime.now().strftime('\n' + "%m/%d/%Y, %H:%M:%S") + '\n')
@@ -121,4 +122,4 @@ def init_log():
             my_stderr.flush()
             self._showtraceback_orig(etype, evalue, stb)
 
-        get_ipython()._showtraceback = types.MethodType(_showtraceback, get_ipython())
+        ip._showtraceback = types.MethodType(_showtraceback, ip)
