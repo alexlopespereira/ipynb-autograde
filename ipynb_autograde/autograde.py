@@ -47,7 +47,7 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
   global log_url
   global results_url
   global session_log
-  global student_email
+  student_email = cap.stdout
 
   current_log = ""
   if os.path.exists("./history.txt"):
@@ -110,6 +110,7 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
 
 # This saves all errors to a file called errors.txt
 def init_log():
+    get_ipython().run_cell_magic("capture cap --no-stderr")
     if not hasattr(get_ipython(), '_showtraceback_orig'):
         my_stderr = sys.stderr = open('errors.txt', 'w')  # redirect stderr to file
         get_ipython()._showtraceback_orig = get_ipython()._showtraceback
