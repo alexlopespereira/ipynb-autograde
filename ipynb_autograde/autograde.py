@@ -44,8 +44,10 @@ def send_form(url, data):
 
             
 def validate(func, inputs, outfunc, outputs, exercise_number):
-  global log_url, results_url
-  global session_log, student_email
+  global log_url
+  global results_url
+  global session_log
+  global student_email
 
   current_log = ""
   if os.path.exists("./history.txt"):
