@@ -44,8 +44,9 @@ def send_form(url, data):
 
             
 def validate(func, inputs, outfunc, outputs, exercise_number):
-  global log_url
-  global results_url
+  import os
+  log_url = os.getenv("log_url").replace("|", "=")
+  results_url = os.getenv("results_url").replace("|", "=")
   global session_log
   ip = get_ipython()
   student_email = ip.getoutput("gcloud config get-value account")[0]
