@@ -1,4 +1,3 @@
-#@title Init Cell - Execute-me!!!
 import sys
 from datetime import datetime
 import requests
@@ -7,9 +6,8 @@ from requests.utils import quote
 import types
 import numpy as np
 import pandas as pd
+import os
 
-# url     = 'https://docs.google.com/forms/d/e/1FAIpQLSeASSC8-w8FmfodZ4lBnuSEAvYuE4vatIBowLIREG1f-2pIpA/formResponse?usp=pp_url&entry.1986154915=mbacd&entry.513694412=2021&entry.1914621244=CienciaDeDados'
-# log_url = 'https://docs.google.com/forms/d/e/1FAIpQLSfRtpAVNRGKDmTxh9FhJKucyNMGeQ8Es_JRyG_HcUUVmM_zQg/formResponse?usp=pp_url&entry.1956860070=mbacd&entry.205464053=2021&entry.1885440499=CienciaDeDados'
 
 def format_values(values, data_type="EXERCISE"):
     result = {}
@@ -47,14 +45,13 @@ def send_form(url, data):
             
 def validate(func, inputs, outfunc, outputs, exercise_number):
   global log_url, results_url
-  global session_log
-  student_email=!gcloud config get-value account
-  if not student_email or 'unset' in student_email[0]:
-    !gcloud auth login
-    student_email=!gcloud config get-value account
+  global session_log, student_email
+
   current_log = ""
-  !rm -f ./history.txt
-  %history -o -f history.txt
+  if os.path.exists("./history.txt"):
+      os.remove("./history.txt")
+  get_ipython().magic("history -o -f ./history.txt")
+
   with open("history.txt") as file:
     current_log = file.read()
   try:
@@ -71,11 +68,11 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
   tmp_log = f"{current_log}"
   current_log = current_log.replace(session_log, "")
   session_log = tmp_log
-  logvalues = {"exercise_number": exercise_number, "student_id": student_email[0],
+  logvalues = {"exercise_number": exercise_number, "student_id": student_email,
                 "log": f"{current_log}", "errors": f"{current_errors}"}
   log_data = format_values(logvalues, "LOG")
 
-  send_form(f"{log_url}&emailAddress={quote(str(student_email[0]))}", log_data)
+  send_form(f"{log_url}&emailAddress={quote(str(student_email))}", log_data)
         
   answers_status = True
   for k, v in zip(inputs, outputs):
@@ -100,11 +97,11 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
 
   if answers_status:
       exercise_score = True
-      values = {"exercise_number": exercise_number, "student_id": student_email[0],
+      values = {"exercise_number": exercise_number, "student_id": student_email,
                 "exercise_points": 1, "exercise_score": exercise_score, 
-                "id": f"{student_email[0]}_{exercise_number}"}
+                "id": f"{student_email}_{exercise_number}"}
       final_data = format_values(values, "EXERCISE")
-      send_form(f"{results_url}&emailAddress={quote(str(student_email[0]))}", final_data)
+      send_form(f"{results_url}&emailAddress={quote(str(student_email))}", final_data)
       return True, "Parabéns!"
   else:
       return False, validate_output
