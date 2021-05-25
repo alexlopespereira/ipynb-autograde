@@ -9,7 +9,7 @@ import pandas as pd
 import os
 
 
-def send_form(url, data):
+def send_form(url, data=None):
     count = 0
     while count < 3:
         count += 1
@@ -54,8 +54,8 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
     log_url = log_url.replace("__exercisenumber__", exercise_number.replace(".", "_"))
     log_field, error_field = log_data_fields.split("&")
     log_data = {log_field.split("=")[0]: current_log, error_field.split("=")[0]: current_errors}
-
-    send_form(f"{log_url}&emailAddress={quote(str(student_email))}", log_data)
+    request_url = f"{log_url}&emailAddress={quote(str(student_email))}"
+    send_form(request_url, log_data)
 
     answers_status = True
     for k, v in zip(inputs, outputs):
@@ -80,8 +80,9 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
 
     if answers_status:
         exercise_score = True
-        results_url = results_url.replace("__exercisenumber__", exercise_number.replace(".", "_")).replace("__exercisescore__", exercise_score)
-        send_form(f"{results_url}&emailAddress={quote(str(student_email))}")
+        results_url = results_url.replace("__exercisenumber__", exercise_number.replace(".", "_")).replace("__exercisescore__", str(exercise_score))
+        request_url = f"{results_url}&emailAddress={quote(str(student_email))}"
+        send_form(request_url)
         return True, "Parabéns!"
     else:
         return False, validate_output
@@ -101,3 +102,4 @@ def init_log():
             self._showtraceback_orig(etype, evalue, stb)
 
         ip._showtraceback = types.MethodType(_showtraceback, ip)
+
