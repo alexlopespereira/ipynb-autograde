@@ -23,25 +23,37 @@ def findLastRow(worksheet, col1, col2=None):
     else:
         return n1
 
-wdfa = WDFA(
-        states={'q0', 'fu', 'te', 'va', 'im'},
-        input_symbols={'f', 't', 'v', 'i'},
-        transitions={
+total_wdfa = WDFA(states={'q0', 'fu', 'te', 'va', 'im'}, input_symbols={'f', 't', 'v', 'i'}, transitions={
             'q0': {'f': 'fu', 't': 'te', 'v': 'va', 'i': 'im'},
             'im': {'f': 'fu', 't': 'te', 'v': 'va', 'i': 'im'},
             'fu': {'f': 'fu', 't': 'te', 'v': 'va', 'i': 'im'},
             'te': {'f': 'fu', 't': 'te', 'v': 'va', 'i': 'im'},
             'va': {'f': 'fu', 't': 'te', 'v': 'va', 'i': 'im'},
-        },
-        weights={
+        }, weights={
                 'q0': {'f': 5, 't': 1, 'v': 5, 'i': 0},
                 'im': {'f': 3, 't': 0, 'v': 5, 'i': 0},
                 'fu': {'f': 2, 't': 1, 'v': 1, 'i': 1},
                 'te': {'f': 1, 't': 0, 'v': 6, 'i': 1},
                 'va': {'f': 2, 't': 1, 'v': 2, 'i': 1}
         },
-        initial_state='q0',
-        final_states={'q0', 'fu', 'te', 'va', 'im'})
+        initial_state='q0', final_states={'q0', 'fu', 'te', 'va', 'im'})
+
+no_import_wdfa = WDFA(states={'q0', 'fu', 'te', 'va'}, input_symbols={'f', 't', 'v'},
+                      transitions={
+                                    'q0': {'f': 'fu', 't': 'te', 'v': 'va'},
+                                    'fu': {'f': 'fu', 't': 'te', 'v': 'va'},
+                                    'te': {'f': 'fu', 't': 'te', 'v': 'va'},
+                                    'va': {'f': 'fu', 't': 'te', 'v': 'va'},
+                                  },
+                      weights={
+                                    'q0': {'f': 5, 't': 1, 'v': 5},
+                                    'im': {'f': 3, 't': 0, 'v': 5},
+                                    'fu': {'f': 2, 't': 1, 'v': 1},
+                                    'te': {'f': 1, 't': 0, 'v': 6},
+                                    'va': {'f': 2, 't': 1, 'v': 2}
+                              },
+                      initial_state='q0', final_states={'q0', 'fu', 'te', 'va'})
+
 
 start, end = findLastRow(forms_sheet, 10, 1)
 cells_range = f"A{start+1}:I{end}"
@@ -54,8 +66,8 @@ for i, row in enumerate(values):
     input_data = re.findall("(# Faca )(.*)(testes|função|validação|import)(.*)(\d{1,2}\.\d{1,2})(\n)", row[7])
     if bool(input_data) and len(input_data[0]) == 6:
         actions = "".join(map(lambda x, y: x[2][0] if x[4] == y else "", input_data, [input_data[0][4]]*len(input_data)))
-        wdfa.reset()
-        cost = wdfa.read_input(actions)[1]
+        total_wdfa.reset()
+        cost = total_wdfa.read_input(actions)[1]
         cell_list[i].value = cost
 
 
