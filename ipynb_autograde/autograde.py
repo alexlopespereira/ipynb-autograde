@@ -80,7 +80,9 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
 
     if answers_status:
         exercise_score = True
-        results_url = results_url.replace("__exercisenumber__", exercise_number.replace(".", "_")).replace("__exercisescore__", str(exercise_score))
+        results_url = results_url.replace("__exercisenumber__", exercise_number.replace(".", "_"))\
+                      .replace("__exercisescore__", str(exercise_score))\
+                      .replace("__id__", f"{student_email}_{exercise_number}")
         request_url = f"{results_url}&emailAddress={quote(str(student_email))}"
         send_form(request_url)
         return True, "Parabéns!"
