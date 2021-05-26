@@ -37,15 +37,13 @@ class WDFA(DFA):
         if input_symbol in self.transitions[current_state]:
             return self.transitions[current_state][input_symbol], self.weights[current_state][input_symbol]
         else:
-            raise RejectionException(
-                '{} is not a valid input symbol'.format(input_symbol))
+            raise RejectionException('{} is not a valid input symbol'.format(input_symbol))
 
     def reset(self):
         self.accumulated_cost = 0
 
 
 if __name__ == '__main__':
-
     wdfa = WDFA(
         states={'q0', 'fu', 'te', 'va'},
         input_symbols={'f', 't', 'v'},
