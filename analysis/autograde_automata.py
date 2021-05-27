@@ -1,6 +1,6 @@
 import copy
 
-from automata.base.exceptions import RejectionException
+from automata.base.exceptions import RejectionException, MissingSymbolError
 from automata.fa.dfa import DFA
 
 
@@ -12,6 +12,15 @@ class WDFA(DFA):
         super().__init__(states=states, input_symbols=input_symbols, transitions=transitions, initial_state=initial_state, final_states=final_states)
         self.weights = copy.deepcopy(weights)
         self.accumulated_cost = 0
+
+    def _validate_transition_missing_symbols(self, start_state, paths):
+        """Raise an error if the transition input_symbols are missing."""
+        all_missing = True
+        for input_symbol in self.input_symbols:
+            if input_symbol in paths:
+                all_missing = False
+        if all_missing:
+            raise MissingSymbolError(f'state {start_state} is missing transitions for all symbols')
 
     def read_input_stepwise(self, input_str):
         """

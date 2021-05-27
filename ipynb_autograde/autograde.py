@@ -20,16 +20,8 @@ def send_form(url, data=None):
             print("Error Occured!")
             time.sleep(2)
 
-
-def validate(func, inputs, outfunc, outputs, exercise_number):
-    import os
-    log_url, log_data_fields = os.getenv("log_url").replace("|||", "=").split("&__data__")
-    results_url = os.getenv("results_url").replace("|||", "=")
+def get_current_log_errors(ip):
     global session_log
-    ip = get_ipython()
-    student_email = ip.getoutput("gcloud config get-value account")[0]
-
-    current_log = ""
     if os.path.exists("./history.txt"):
         os.remove("./history.txt")
     ip.magic("history -o -f ./history.txt")
@@ -50,13 +42,15 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
     tmp_log = f"{current_log}"
     current_log = current_log.replace(session_log, "")
     session_log = tmp_log
+    return current_log, current_errors
 
-    log_url = log_url.replace("__exercisenumber__", exercise_number.replace(".", "_"))
-    log_field, error_field = log_data_fields.split("&")
-    log_data = {log_field.split("=")[0]: current_log, error_field.split("=")[0]: current_errors}
-    request_url = f"{log_url}&emailAddress={quote(str(student_email))}"
-    send_form(request_url, log_data)
 
+def validate(func, inputs, outfunc, outputs, exercise_number):
+    import os
+    log_url, log_data_fields = os.getenv("log_url").replace("|||", "=").split("&__data__")
+    results_url = os.getenv("results_url").replace("|||", "=")
+    ip = get_ipython()
+    student_email = ip.getoutput("gcloud config get-value account")[0]
     answers_status = True
     for k, v in zip(inputs, outputs):
         ans = func(*k)
@@ -80,11 +74,17 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
 
     if answers_status:
         exercise_score = True
+        log_url = f"{log_url}&emailAddress={quote(str(student_email))}"
         results_url = results_url.replace("__exercisenumber__", exercise_number.replace(".", "_"))\
                       .replace("__exercisescore__", str(exercise_score))\
                       .replace("__id__", f"{student_email}_{exercise_number}")
         request_url = f"{results_url}&emailAddress={quote(str(student_email))}"
         send_form(request_url)
+        log_url = log_url.replace("__exercisenumber__", exercise_number.replace(".", "_"))
+        log_field, error_field = log_data_fields.split("&")
+        current_log, current_errors = get_current_log_errors(ip)
+        log_data = {log_field.split("=")[0]: current_log, error_field.split("=")[0]: current_errors}
+        send_form(log_url, log_data)
         return True, "Parabéns!"
     else:
         return False, validate_output
