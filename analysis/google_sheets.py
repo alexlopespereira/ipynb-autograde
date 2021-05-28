@@ -46,7 +46,7 @@ no_test_wdfa = WDFA(states={'q0', 'inc', 'te'}, input_symbols={'f', 't', 'v', 'i
     'te': {'f': 'te', 't': 'te', 'v': 'te', 'i': 'te'}
 }, weights={
     'q0': {'f': 1, 'v': 1, 'i': 0},
-    'inc': {'f': 1, 't': 0, 'v': 1, 'i': 0},
+    'inc': {'f': 0, 't': 0, 'v': 0, 'i': 0},
     'te': {'f': 0, 't': 0, 'v': 0, 'i': 0}
 }, initial_state='q0', final_states={'q0', 'inc', 'te'})
 
@@ -56,7 +56,7 @@ no_function_wdfa = WDFA(states={'q0', 'inc', 'fu'}, input_symbols={'f', 't', 'v'
     'fu': {'f': 'fu', 't': 'fu', 'v': 'fu', 'i': 'fu'}
 }, weights={
     'q0': {'t': 0, 'v': 1, 'i': 0},
-    'inc': {'f': 0, 't': 0, 'v': 1, 'i': 0},
+    'inc': {'f': 0, 't': 0, 'v': 0, 'i': 0},
     'fu': {'f': 0, 't': 0, 'v': 0, 'i': 0}
 }, initial_state='q0', final_states={'q0', 'inc', 'fu'})
 
