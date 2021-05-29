@@ -2,6 +2,8 @@ import re
 import gspread
 from analysis.autograde_automata import WDFA
 from automata.base.exceptions import RejectionException
+import pandas as pd
+from operator import itemgetter
 
 SERVICE_ACCOUNT_FILE = './key/key.json'
 SAMPLE_SPREADSHEET_ID = '1h0WZrH3rQOwP6XOvnfqpH_qSF6nrYTXWFNjVln-e-l8'
@@ -9,6 +11,7 @@ SAMPLE_RANGE_NAME = 'Form Responses 1!H2:I10'
 gc = gspread.service_account(filename=SERVICE_ACCOUNT_FILE)
 autograde_spreadsheet = gc.open_by_key(SAMPLE_SPREADSHEET_ID)
 forms_sheet = autograde_spreadsheet.get_worksheet(0)
+errors_sheet = autograde_spreadsheet.get_worksheet(1)
 
 
 def findLastRow(worksheet, col1, col2=None):
@@ -66,13 +69,13 @@ values = forms_sheet.get(cells_range)
 total_cell_list = forms_sheet.range(f"J{start + 1}:J{end}")
 notest_cell_list = forms_sheet.range(f"K{start + 1}:K{end}")
 nofunction_cell_list = forms_sheet.range(f"L{start + 1}:L{end}")
-
+df_error_list = []
 for i, row in enumerate(values):
     if len(row) < 8:
         continue
-    input_data = re.findall("(#+\s+[Ff]a[cc]a )(.*)(testes|função|validação|import)(.*)(\d{1,2}\.\d{1,2})?(\n)", row[7])
-    if bool(input_data) and len(input_data[0]) == 6:
-        actions = "".join(map(lambda x, y: x[2][0] if x[4] == y else "", input_data, [input_data[0][4]] * len(input_data)))
+    log_input_data = re.findall("(#+\s+[Ff]a[cc]a )(.*)(testes|função|validação|import)(.*)(\d{1,2}\.\d{1,2})?(\n)", row[7])
+    if bool(log_input_data) and len(log_input_data[0]) == 6:
+        actions = "".join(map(lambda x, y: x[2][0] if x[4] == y else "", log_input_data, [log_input_data[0][4]] * len(log_input_data)))
         total_wdfa.reset()
         no_test_wdfa.reset()
         no_function_wdfa.reset()
@@ -89,7 +92,16 @@ for i, row in enumerate(values):
         except RejectionException as e:
             pass
 
+    if len(row) > 8:
+        current_error_data = re.sub(".*Traceback.*\n?", "", row[8])
+        error_input_data = re.findall("(\[\d+;\d+m)(.*Error)(\[\d+m?.*m\:(\[.*m)?\s?)(.*)(\n)", current_error_data)
+        df_errors = pd.DataFrame(data=[row[0:7]]*len(error_input_data))
+        df_errors[['category','subcategory']] = [itemgetter(1, 3)(l) for l in error_input_data]
+        df_error_list.append(df_errors)
 
-forms_sheet.update_cells(total_cell_list)
-forms_sheet.update_cells(notest_cell_list)
-forms_sheet.update_cells(nofunction_cell_list)
+# forms_sheet.update_cells(total_cell_list)
+# forms_sheet.update_cells(notest_cell_list)
+# forms_sheet.update_cells(nofunction_cell_list)
+df_errors = pd.concat(df_error_list)
+error_values = df_errors.values
+errors_sheet.append_rows(error_values)
