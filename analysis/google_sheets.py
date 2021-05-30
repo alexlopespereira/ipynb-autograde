@@ -93,15 +93,20 @@ for i, row in enumerate(values):
             pass
 
     if len(row) > 8:
-        current_error_data = re.sub(".*Traceback.*\n?", "", row[8])
+        exclude_patterns = [".*Traceback.*\n?", "\/usr\/local\/lib\/python", "ipython-input", "(\[0m.*){4}"]
+        current_error_data = row[8]
+        for e in exclude_patterns:
+            current_error_data = re.sub(e, "", current_error_data)
         error_input_data = re.findall("(\[\d+;\d+m)(.*Error)(\[\d+m?.*m\:(\[.*m)?\s?)(.*)(\n)", current_error_data)
         df_errors = pd.DataFrame(data=[row[0:7]]*len(error_input_data))
-        df_errors[['category','subcategory']] = [itemgetter(1, 3)(l) for l in error_input_data]
+        df_errors[['category','subcategory']] = [itemgetter(1, 4)(l) for l in error_input_data]
+        df_errors[9] = df_errors['subcategory'].str.extract(".*'(.*)'").fillna("")
+        # df_errors[0] = df_errors[0].str.strip()
         df_error_list.append(df_errors)
 
-# forms_sheet.update_cells(total_cell_list)
-# forms_sheet.update_cells(notest_cell_list)
-# forms_sheet.update_cells(nofunction_cell_list)
+forms_sheet.update_cells(total_cell_list)
+forms_sheet.update_cells(notest_cell_list)
+forms_sheet.update_cells(nofunction_cell_list)
 df_errors = pd.concat(df_error_list)
-error_values = df_errors.values
+error_values = df_errors.values.tolist()
 errors_sheet.append_rows(error_values)
