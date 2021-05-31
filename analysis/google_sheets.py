@@ -101,7 +101,6 @@ for i, row in enumerate(values):
         df_errors = pd.DataFrame(data=[row[0:7]]*len(error_input_data))
         df_errors[['category','subcategory']] = [itemgetter(1, 4)(l) for l in error_input_data]
         df_errors[9] = df_errors['subcategory'].str.extract(".*'(.*)'").fillna("")
-        # df_errors[0] = df_errors[0].str.strip()
         df_error_list.append(df_errors)
 
 forms_sheet.update_cells(total_cell_list)
