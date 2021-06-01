@@ -1,0 +1,6 @@
+from google.colab import drive
+drive.mount('/content/drive')
+!git clone https://USER:PASSWORD@github.com/alexlopespereira/ipynb-autograde.git
+!cp -rf /content/ipynb-autograde/autograde/* /content/
+!python /content/cython_autograde.py build_ext --inplace
+!cp ./build/lib.linux-x86_64-3.7/content/autograde.cpython-37m-x86_64-linux-gnu.so ./drive/MyDrive/autograde.so
