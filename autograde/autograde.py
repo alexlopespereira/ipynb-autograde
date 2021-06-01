@@ -62,7 +62,6 @@ def get_current_log_errors(ip):
 
     with open(".errors") as file:
         current_errors = file.read()
-    # Clear errors
     open('.errors', 'w').close()
     tmp_log = f"{current_log}"
     current_log = current_log.replace(session_log, "")
