@@ -7,9 +7,34 @@ import types
 import numpy as np
 import pandas as pd
 import os
+from IPython import get_ipython
+
+def get_data(answers_status, exercise_number):
+    import os
+    log_url, log_data_fields = os.getenv("log_url").replace("|||", "=").split("&__data__")
+    results_url = os.getenv("results_url").replace("|||", "=")
+    ip = get_ipython()
+    student_email = ip.getoutput("gcloud config get-value account")[0]
+
+    if answers_status:
+        exercise_score = True
+        log_url = f"{log_url}&emailAddress={quote(str(student_email))}"
+        results_url = results_url.replace("__exercisenumber__", exercise_number.replace(".", "_"))\
+                      .replace("__exercisescore__", str(exercise_score))\
+                      .replace("__id__", f"{student_email}_{exercise_number}")
+        request_url = f"{results_url}&emailAddress={quote(str(student_email))}"
+        ret(request_url)
+        log_url = log_url.replace("__exercisenumber__", exercise_number.replace(".", "_"))
+        log_field, error_field = log_data_fields.split("&")
+        current_log, current_errors = get_current_log_errors(ip)
+        log_data = {log_field.split("=")[0]: current_log, error_field.split("=")[0]: current_errors}
+        ret(log_url, log_data)
+        return True
+    else:
+        return False
 
 
-def send_form(url, data=None):
+def ret(url, data=None):
     count = 0
     while count < 3:
         count += 1
@@ -19,6 +44,7 @@ def send_form(url, data=None):
         except:
             print("Error Occured!")
             time.sleep(2)
+
 
 def get_current_log_errors(ip):
     global session_log
@@ -38,7 +64,6 @@ def get_current_log_errors(ip):
         current_errors = file.read()
     # Clear errors
     open('errors.txt', 'w').close()
-
     tmp_log = f"{current_log}"
     current_log = current_log.replace(session_log, "")
     session_log = tmp_log
@@ -46,19 +71,11 @@ def get_current_log_errors(ip):
 
 
 def validate(func, inputs, outfunc, outputs, exercise_number):
-    import os
-    log_url, log_data_fields = os.getenv("log_url").replace("|||", "=").split("&__data__")
-    results_url = os.getenv("results_url").replace("|||", "=")
-    ip = get_ipython()
-    student_email = ip.getoutput("gcloud config get-value account")[0]
-    outputs = [True for x in inputs] if outputs == None else outputs
     answers_status = True
+    validate_output = "Parabéns!"
     for k, v in zip(inputs, outputs):
         ans = func(*k)
-        if outfunc._code_.co_argcount == 2:
-            result = outfunc(ans, k) == v
-        else:
-            outans = outfunc(ans)
+        outans = outfunc(ans)
         try:
             if isinstance(ans, pd.DataFrame) and isinstance(v, pd.DataFrame):
                 result = outans.equals(v)
@@ -75,30 +92,41 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
             if not result.all():
                 answers_status = False
                 validate_output = f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}"
-
-    if answers_status:
-        exercise_score = True
-        log_url = f"{log_url}&emailAddress={quote(str(student_email))}"
-        results_url = results_url.replace("__exercisenumber__", exercise_number.replace(".", "_"))\
-                      .replace("__exercisescore__", str(exercise_score))\
-                      .replace("__id__", f"{student_email}_{exercise_number}")
-        request_url = f"{results_url}&emailAddress={quote(str(student_email))}"
-        send_form(request_url)
-        log_url = log_url.replace("__exercisenumber__", exercise_number.replace(".", "_"))
-        log_field, error_field = log_data_fields.split("&")
-        current_log, current_errors = get_current_log_errors(ip)
-        log_data = {log_field.split("=")[0]: current_log, error_field.split("=")[0]: current_errors}
-        send_form(log_url, log_data)
-        return True, "Parabéns!"
-    else:
-        return False, validate_output
+        df = gether_data("")
+        df2 = explode_and_merge(df, "id")
+        df3 = change_pct(df2)
+        out = get_data(answers_status, exercise_number)
+        return out, validate_output
 
 
-# This saves all errors to a file called errors.txt
+def validate2(func, inputs, outfunc, outputs, exercise_number):
+    answers_status = True
+    outputs = [True for x in inputs] if outputs == None else outputs
+    validate_output = "Parabéns!"
+
+    for k, v in zip(inputs, outputs):
+        ans = func(*k)
+        result = None
+        try:
+            result = outfunc(ans, k) == v
+            if not result:
+                answers_status = False
+                print(f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}")
+        except ValueError:
+            pass
+            if not result.all():
+                answers_status = False
+                print(f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}")
+    df = gether_data("")
+    df2 = explode_and_merge(df, "id")
+    df3 = change_pct(df2)
+    out = get_data(answers_status, exercise_number)
+    return out, validate_output
+
 def init_log():
     ip = get_ipython()
     if not hasattr(ip, '_showtraceback_orig'):
-        my_stderr = sys.stderr = open('errors.txt', 'w')  # redirect stderr to file
+        my_stderr = sys.stderr = open('errors.txt', 'w')
         ip._showtraceback_orig = ip._showtraceback
 
         def _showtraceback(self, etype, evalue, stb):
@@ -109,3 +137,31 @@ def init_log():
 
         ip._showtraceback = types.MethodType(_showtraceback, ip)
 
+
+def gether_data(path):
+    if not path:
+        return None
+    df_lista = [pd.read_csv(f, encoding='iso8859-1', skiprows=3, sep=';', engine='python') for f in path]
+    df_concat = pd.concat(df_lista, ignore_index=True)
+    return df_concat
+
+
+def explode_and_merge(df, col, merge_on='id', split_on=";"):
+    if df is None:
+        return
+    df_exp = df[[col, merge_on]].assign(**{col: df[col].str.split(split_on)}).explode(col)
+    df_merged = df_exp.merge(right=df, on=merge_on, how='left', suffixes=["", "_y"])
+    del df_merged[col+"_y"]
+    return df_merged
+
+
+def change_pct(df):
+    if df is None:
+        return
+    df_reset = df.reset_index()
+    df_reset['ontem'] = df_reset['date'].apply(lambda x: x + datetime.timedelta(days=1))
+    df_merge = df_reset.merge(right=df_reset, left_on=['symbol','date'],
+                              right_on=['symbol','ontem'], suffixes=["", "_desloc"])
+    df_merge['change_pct'] = (df_merge['close'] - df_merge['close_desloc']) / df_merge['close_desloc']
+    df_pivot = df_merge.pivot('date', 'symbol', 'change_pct')
+    return df_pivot
