@@ -126,7 +126,7 @@ def validate2(func, inputs, outfunc, outputs, exercise_number):
 def init_log():
     ip = get_ipython()
     if not hasattr(ip, '_showtraceback_orig'):
-        my_stderr = sys.stderr = open('errors.txt', 'w')
+        my_stderr = sys.stderr = open('.errors', 'w')
         ip._showtraceback_orig = ip._showtraceback
 
         def _showtraceback(self, etype, evalue, stb):
