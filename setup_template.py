@@ -29,4 +29,6 @@ setup(
         'numpy>=1.19.5',
         'pandas>=1.1.5'
       ],
+    package_dir={'': '.'},
+    package_data={'': ['autograde.so']},
 )
