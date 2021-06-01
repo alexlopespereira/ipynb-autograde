@@ -48,11 +48,11 @@ def ret(url, data=None):
 
 def get_current_log_errors(ip):
     global session_log
-    if os.path.exists("./history.txt"):
-        os.remove("./history.txt")
-    ip.magic("history -o -f ./history.txt")
+    if os.path.exists("./.commands"):
+        os.remove("./.commands")
+    ip.magic("history -o -f ./.commands")
 
-    with open("history.txt") as file:
+    with open(".commands") as file:
         current_log = file.read()
     try:
         if not session_log:
@@ -60,10 +60,10 @@ def get_current_log_errors(ip):
     except:
         session_log = ""
 
-    with open("errors.txt") as file:
+    with open(".errors") as file:
         current_errors = file.read()
     # Clear errors
-    open('errors.txt', 'w').close()
+    open('.errors', 'w').close()
     tmp_log = f"{current_log}"
     current_log = current_log.replace(session_log, "")
     session_log = tmp_log
