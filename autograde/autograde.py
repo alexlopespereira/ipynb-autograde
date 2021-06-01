@@ -51,10 +51,14 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
     results_url = os.getenv("results_url").replace("|||", "=")
     ip = get_ipython()
     student_email = ip.getoutput("gcloud config get-value account")[0]
+    outputs = [True for x in inputs] if outputs == None else outputs
     answers_status = True
     for k, v in zip(inputs, outputs):
         ans = func(*k)
-        outans = outfunc(ans)
+        if outfunc._code_.co_argcount == 2:
+            result = outfunc(ans, k) == v
+        else:
+            outans = outfunc(ans)
         try:
             if isinstance(ans, pd.DataFrame) and isinstance(v, pd.DataFrame):
                 result = outans.equals(v)
