@@ -9,6 +9,7 @@ import pandas as pd
 import os
 from IPython import get_ipython
 
+
 def get_data(answers_status, exercise_number):
     import os
     log_url, log_data_fields = os.getenv("log_url").replace("|||", "=").split("&__data__")
