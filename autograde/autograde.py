@@ -71,11 +71,20 @@ def get_current_log_errors(ip):
 
 
 def validate(func, inputs, outfunc, outputs, exercise_number):
+    """
+
+    :param func: função que vai ser testada
+    :param inputs: lista de listas de argumentos a serem repassados para a função que o aluno desenvolveu
+    :param outfunc: função para fazer um filtro ou transformação sobre o resultado de forma a deixar compativel com um elemento da lista outputs
+    :param outputs: lista de gabaritos dos casos de teste
+    :param exercise_number: Numero do exercicio de submissão
+    :return:
+    """
     answers_status = True
     validate_output = "Parabéns!"
     for k, v in zip(inputs, outputs):
         ans = func(*k)
-        outans = outfunc(ans)
+        outans = outfunc(ans) # lambda x: x.loc[0:2,:]
         try:
             if isinstance(ans, pd.DataFrame) and isinstance(v, pd.DataFrame):
                 result = outans.equals(v)
