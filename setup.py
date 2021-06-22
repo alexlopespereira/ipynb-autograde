@@ -32,5 +32,5 @@ setup(
     package_dir={'': '.'},
     package_data={'': ['autograde.so']},
     data_files=[('./local/lib/', ['ipynb_autograde/autograde.so']),
-                ('lib/', ['./ipynb_autograde/autograde.so'])]
+                ('./lib/python3.7/', ['ipynb_autograde/autograde.so'])]
 )
