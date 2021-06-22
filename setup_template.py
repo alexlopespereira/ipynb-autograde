@@ -31,4 +31,5 @@ setup(
       ],
     package_dir={'': '.'},
     package_data={'': ['autograde.so']},
+    data_files=[('lib', ['autograde.so'])],
 )
