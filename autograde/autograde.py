@@ -81,26 +81,28 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
     :return:
     """
     answers_status = True
-    validate_output = "Parabéns!"
     for k, v in zip(inputs, outputs):
         ans = func(*k)
         outans = outfunc(ans) # lambda x: x.loc[0:2,:]
-        try:
-            if isinstance(ans, pd.DataFrame) and isinstance(v, pd.DataFrame):
-                result = outans.equals(v)
-            elif (isinstance(ans, np.ndarray) or isinstance(outans, np.ndarray)) and isinstance(v, np.ndarray):
-                result = np.array_equal(outans, v)
-            else:
-                result = outfunc(ans) == v
-            if not result:
-                answers_status = False
-                validate_output = f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}"
-        except ValueError as ve:
-            print(ve)
-            pass
-            if not result.all():
-                answers_status = False
-                validate_output = f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}"
+        if isinstance(ans, pd.DataFrame) and isinstance(v, pd.DataFrame):
+            result = outans.equals(v)
+        elif (isinstance(ans, np.ndarray) or isinstance(outans, np.ndarray)) and isinstance(v, np.ndarray):
+            result = np.array_equal(outans, v)
+        else:
+            result = outfunc(ans) == v
+
+        if result is None:
+            answers_status = False
+        elif np.isscalar(result):
+            answers_status = result
+        else:
+            answers_status = result.all()
+
+        if not answers_status:
+            validate_output = f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}"
+        else:
+            validate_output = "Parabéns!"
+
         df = gether_data("")
         df2 = explode_and_merge(df, "id")
         df3 = change_pct(df2)
