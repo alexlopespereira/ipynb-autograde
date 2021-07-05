@@ -21,7 +21,10 @@ def get_data(answers_status, exercise_number):
     global datasets
     # LOG_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfRtpAVNRGKDmTxh9FhJKucyNMGeQ8Es_JRyG_HcUUVmM_zQg/formResponse?usp|||pp_url&entry.1956860070|||mbacd&entry.205464053|||2021&entry.1885440499|||CienciaDeDados&entry.1437170782|||__exercisenumber__&__data__entry.304785533|||__log__&entry.2060734065|||__errors__"
     # RESULTS_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeASSC8-w8FmfodZ4lBnuSEAvYuE4vatIBowLIREG1f-2pIpA/formResponse?usp|||pp_url&entry.1986154915|||mbacd&entry.513694412|||2021&entry.1914621244|||CienciaDeDados&entry.1799867692|||__exercisenumber__&entry.886231469|||__exercisescore__&entry.1342537331|||__id__"
-    course = os.getenv("COURSE") or "python_enap"
+    course = os.getenv("COURSE")
+    if course is None:
+        print("Execute a célula que define o nome do curso. Exemplo: %env COURSE nome_curso", sys.stderr)
+        return False
     log_url, log_data_fields = datasets[course]["LOG_URL"].replace("|||", "=").split("&__data__")
     results_url = datasets[course]["RESULTS_URL"].replace("|||", "=")
     ip = get_ipython()
