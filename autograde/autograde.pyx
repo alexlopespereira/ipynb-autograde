@@ -120,6 +120,8 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
         df2 = explode_and_merge(df, "id")
         df3 = change_pct(df2)
         out = get_data(answers_status, exercise_number)
+        if not out:
+            validate_output = "Erro na validação. Provavelmente falta ajustar a variavel do nome do curso."
         return out, validate_output
 
 
