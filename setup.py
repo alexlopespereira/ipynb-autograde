@@ -3,13 +3,13 @@ from distutils.core import setup
 setup(
     name="ipynb_autograde",
     packages=['ipynb_autograde'],
-    version="0.0.30",
+    version="0.0.31",
     license="GNU Lesser General Public License v3.0",
     description="Autograde for ipynb",
     author="Alex Lopes Pereira",
     author_email="alexlopespereira@gmail.com",
     url="https://github.com/alexlopespereira/ipynb-autograde",
-    download_url="https://github.com/alexlopespereira/ipynb-autograde/archive/0.0.30.tar.gz",
+    download_url="https://github.com/alexlopespereira/ipynb-autograde/archive/0.0.31.tar.gz",
     keywords=['ipynb', 'notebook', 'autograde', 'colab', 'jupyter'],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
