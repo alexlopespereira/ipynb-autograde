@@ -9,13 +9,21 @@ import pandas as pd
 import os
 from IPython import get_ipython
 
+PYTHON_ENAP_LOG_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfRtpAVNRGKDmTxh9FhJKucyNMGeQ8Es_JRyG_HcUUVmM_zQg/formResponse?usp|||pp_url&entry.1956860070|||mbacd&entry.205464053|||2021&entry.1885440499|||CienciaDeDados&entry.1437170782|||__exercisenumber__&__data__entry.304785533|||__log__&entry.2060734065|||__errors__"
+PYTHON_ENAP_RESULTS_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeASSC8-w8FmfodZ4lBnuSEAvYuE4vatIBowLIREG1f-2pIpA/formResponse?usp|||pp_url&entry.1986154915|||mbacd&entry.513694412|||2021&entry.1914621244|||CienciaDeDados&entry.1799867692|||__exercisenumber__&entry.886231469|||__exercisescore__&entry.1342537331|||__id__"
+
+PYTHON_SGD_LOG_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfRtpAVNRGKDmTxh9FhJKucyNMGeQ8Es_JRyG_HcUUVmM_zQg/formResponse?usp|||pp_url&entry.1956860070|||cienciadados&entry.205464053|||tribosgd&entry.1885440499|||python&entry.1437170782|||__exercisenumber__&__data__entry.304785533|||__log__&entry.2060734065|||__errors__"
+PYTHON_SGD_RESULTS_URL = "https://docs.google.com/forms/d/e/1FAIpQLScb47A8PDUj0GhD3H5gkvGcN22vxzknpzbio3jhcim-jMfZdg/formResponse?usp|||pp_url&entry.1986154915|||cienciadados&entry.513694412|||tribosgd&entry.1914621244|||python&entry.1799867692|||__exercisenumber__&entry.886231469|||__exercisescore__&entry.1342537331|||__id__"
+
+datasets = {"python_tribosgd": {"RESULTS_URL": PYTHON_SGD_RESULTS_URL, "LOG_URL": PYTHON_SGD_LOG_URL}, "python_enap": {"RESULTS_URL": PYTHON_ENAP_RESULTS_URL, "LOG_URL": PYTHON_ENAP_LOG_URL}}
+
 def get_data(answers_status, exercise_number):
-    LOG_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfRtpAVNRGKDmTxh9FhJKucyNMGeQ8Es_JRyG_HcUUVmM_zQg/formResponse?usp|||pp_url&entry.1956860070|||mbacd&entry.205464053|||2021&entry.1885440499|||CienciaDeDados&entry.1437170782|||__exercisenumber__&__data__entry.304785533|||__log__&entry.2060734065|||__errors__"
-    RESULTS_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeASSC8-w8FmfodZ4lBnuSEAvYuE4vatIBowLIREG1f-2pIpA/formResponse?usp|||pp_url&entry.1986154915|||mbacd&entry.513694412|||2021&entry.1914621244|||CienciaDeDados&entry.1799867692|||__exercisenumber__&entry.886231469|||__exercisescore__&entry.1342537331|||__id__"
-    # log_url, log_data_fields = os.getenv("log_url").replace("|||", "=").split("&__data__")
-    # results_url = os.getenv("results_url").replace("|||", "=")
-    log_url, log_data_fields = LOG_URL.replace("|||", "=").split("&__data__")
-    results_url = RESULTS_URL.replace("|||", "=")
+    global datasets
+    # LOG_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfRtpAVNRGKDmTxh9FhJKucyNMGeQ8Es_JRyG_HcUUVmM_zQg/formResponse?usp|||pp_url&entry.1956860070|||mbacd&entry.205464053|||2021&entry.1885440499|||CienciaDeDados&entry.1437170782|||__exercisenumber__&__data__entry.304785533|||__log__&entry.2060734065|||__errors__"
+    # RESULTS_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeASSC8-w8FmfodZ4lBnuSEAvYuE4vatIBowLIREG1f-2pIpA/formResponse?usp|||pp_url&entry.1986154915|||mbacd&entry.513694412|||2021&entry.1914621244|||CienciaDeDados&entry.1799867692|||__exercisenumber__&entry.886231469|||__exercisescore__&entry.1342537331|||__id__"
+    course = os.getenv("COURSE") or "python_enap"
+    log_url, log_data_fields = datasets[course]["LOG_URL"].replace("|||", "=").split("&__data__")
+    results_url = datasets[course]["RESULTS_URL"].replace("|||", "=")
     ip = get_ipython()
     student_email = ip.getoutput("gcloud config get-value account")[0]
 
