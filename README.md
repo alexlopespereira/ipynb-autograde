@@ -14,3 +14,9 @@
 ./package.sh 0.0.21 "incremental improvements"
 ```
 7. Preencher o login e senha da publicação no pypi
+
+
+#### Informações sobre o diretório analysis
+Ele tem o código que lê as mensagens de erro da tabela do google sheets, e escreve numa outra aba alguns dados retrabalhados dos logs dos erros dos alunos.
+Pra adicionar uma nova spreadsheet, é necessário compartilhar essa spreadsheet com a "Service Account" do google que está configurada no arquivo de credenciais key.json
+Tudo isso é explicado nesse tutorial https://youtu.be/4ssigWmExak
