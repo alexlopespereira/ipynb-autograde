@@ -11,14 +11,14 @@ from IPython import get_ipython
 from defs import datasets
 
 
+
 def get_data(answers_status, exercise_number):
     global datasets
-    # LOG_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfRtpAVNRGKDmTxh9FhJKucyNMGeQ8Es_JRyG_HcUUVmM_zQg/formResponse?usp|||pp_url&entry.1956860070|||mbacd&entry.205464053|||2021&entry.1885440499|||CienciaDeDados&entry.1437170782|||__exercisenumber__&__data__entry.304785533|||__log__&entry.2060734065|||__errors__"
-    # RESULTS_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeASSC8-w8FmfodZ4lBnuSEAvYuE4vatIBowLIREG1f-2pIpA/formResponse?usp|||pp_url&entry.1986154915|||mbacd&entry.513694412|||2021&entry.1914621244|||CienciaDeDados&entry.1799867692|||__exercisenumber__&entry.886231469|||__exercisescore__&entry.1342537331|||__id__"
+
     course = os.getenv("COURSE")
     if course is None:
         print("Execute a célula que define o nome do curso. Exemplo: %env COURSE nome_curso", sys.stderr)
-        return False
+        return False, False
     log_url, log_data_fields = datasets[course]["LOG_URL"].replace("|||", "=").split("&__data__")
     results_url = datasets[course]["RESULTS_URL"].replace("|||", "=")
     ip = get_ipython()
@@ -37,9 +37,9 @@ def get_data(answers_status, exercise_number):
         current_log, current_errors = get_current_log_errors(ip)
         log_data = {log_field.split("=")[0]: current_log, error_field.split("=")[0]: current_errors}
         ret(log_url, log_data)
-        return True
+        return True, True
     else:
-        return False
+        return False, True
 
 
 def ret(url, data=None):
@@ -113,10 +113,10 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
         df = gether_data("")
         df2 = explode_and_merge(df, "id")
         df3 = change_pct(df2)
-        out = get_data(answers_status, exercise_number)
-        if not out:
-            validate_output = "Erro na validação. Provavelmente falta ajustar a variavel do nome do curso."
-        return out, validate_output
+        out_status, found_course = get_data(answers_status, exercise_number)
+        if not found_course:
+            validate_output = "Erro na validação."
+        return out_status, validate_output
 
 
 def validate2(func, inputs, outfunc, outputs, exercise_number):
