@@ -9,5 +9,6 @@ git commit . -m "$message"
 git push origin master
 git tag "${tag}"
 git push origin "${tag}"
-python setup.py sdist
+#python setup.py sdist
+python setup.py sdist bdist_wheel
 twine upload dist/*
