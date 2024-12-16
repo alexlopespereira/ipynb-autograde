@@ -10,5 +10,6 @@ git push origin master
 git tag "${tag}"
 git push origin "${tag}"
 #python setup.py sdist
+python setup.py build_ext --inplace
 python setup.py sdist bdist_wheel
 twine upload dist/*
