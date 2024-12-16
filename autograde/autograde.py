@@ -11,7 +11,7 @@ from IPython import get_ipython
 
 
 def get_data(answers_status, exercise_number):
-    from defs import datasets
+    from autograde.defs import datasets
 
     course = os.getenv("COURSE")
     if course is None:
