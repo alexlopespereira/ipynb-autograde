@@ -1,4 +1,4 @@
-import autograde
+from autograde import autograde
 
 
 def init_log():
