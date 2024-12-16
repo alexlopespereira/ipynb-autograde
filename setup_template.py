@@ -30,7 +30,7 @@ setup(
         'pandas>=1.1.5'
     ],
     package_data={
-        'ipynb_autograde': ['autograde.so'],
+        'ipynb_autograde': ["autograde/*.py"],
     },
     include_package_data=True,
 )
