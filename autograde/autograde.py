@@ -114,13 +114,13 @@ def print_test_results(result):
         else:
             print("\n✅ No tests passed.")
 
-    # Print failed tests
-    if failed_tests:
-        print("\n❌ Failed Test Cases:")
-        for test in failed_tests:
-            print(f"  - Test ID: {test['testcase_id']}")
-    else:
-        print("\n❌ No tests failed.")
+        # Print failed tests
+        if failed_tests:
+            print("\n❌ Failed Test Cases:")
+            for test in failed_tests:
+                print(f"  - Test ID: {test['testcase_id']}")
+        else:
+            print("\n❌ No tests failed.")
 
 
 def validate(user_prompt, exercise_number):
