@@ -89,45 +89,45 @@ def get_current_log_errors(ip):
     return current_log, current_errors
 
 
-def validate_old(func, inputs, outfunc, outputs, exercise_number):
-    """
-    :param func: função que vai ser testada
-    :param inputs: lista de listas de argumentos a serem repassados para a função que o aluno desenvolveu
-    :param outfunc: função para fazer um filtro ou transformação sobre o resultado de forma a deixar compativel com um elemento da lista outputs
-    :param outputs: lista de gabaritos dos casos de teste
-    :param exercise_number: Numero do exercicio de submissão
-    :return:
-    """
-    answers_status = True
-    for k, v in zip(inputs, outputs):
-        ans = func(*k)
-        outans = outfunc(ans) # lambda x: x.loc[0:2,:]
-        if isinstance(ans, pd.DataFrame) and isinstance(v, pd.DataFrame):
-            result = outans.equals(v)
-        elif (isinstance(ans, np.ndarray) or isinstance(outans, np.ndarray)) and isinstance(v, np.ndarray):
-            result = np.array_equal(outans, v)
-        else:
-            result = outfunc(ans) == v
-
-        if result is None:
-            answers_status = False
-        elif np.isscalar(result):
-            answers_status = result
-        else:
-            answers_status = result.all()
-
-        if not answers_status:
-            validate_output = f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}"
-        else:
-            validate_output = "Parabéns!"
-
-        df = gether_data("")
-        df2 = explode_and_merge(df, "id")
-        df3 = change_pct(df2)
-        out_status, found_course = get_data(answers_status, exercise_number)
-        if not found_course:
-            validate_output = "Erro na validação."
-        return out_status, validate_output
+# def validate_old(func, inputs, outfunc, outputs, exercise_number):
+#     """
+#     :param func: função que vai ser testada
+#     :param inputs: lista de listas de argumentos a serem repassados para a função que o aluno desenvolveu
+#     :param outfunc: função para fazer um filtro ou transformação sobre o resultado de forma a deixar compativel com um elemento da lista outputs
+#     :param outputs: lista de gabaritos dos casos de teste
+#     :param exercise_number: Numero do exercicio de submissão
+#     :return:
+#     """
+#     answers_status = True
+#     for k, v in zip(inputs, outputs):
+#         ans = func(*k)
+#         outans = outfunc(ans) # lambda x: x.loc[0:2,:]
+#         if isinstance(ans, pd.DataFrame) and isinstance(v, pd.DataFrame):
+#             result = outans.equals(v)
+#         elif (isinstance(ans, np.ndarray) or isinstance(outans, np.ndarray)) and isinstance(v, np.ndarray):
+#             result = np.array_equal(outans, v)
+#         else:
+#             result = outfunc(ans) == v
+#
+#         if result is None:
+#             answers_status = False
+#         elif np.isscalar(result):
+#             answers_status = result
+#         else:
+#             answers_status = result.all()
+#
+#         if not answers_status:
+#             validate_output = f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}"
+#         else:
+#             validate_output = "Parabéns!"
+#
+#         df = gether_data("")
+#         df2 = explode_and_merge(df, "id")
+#         df3 = change_pct(df2)
+#         out_status, found_course = get_data(answers_status, exercise_number)
+#         if not found_course:
+#             validate_output = "Erro na validação."
+#         return out_status, validate_output
 
 
 def validate(user_prompt, exercise_number):
@@ -146,9 +146,9 @@ def validate(user_prompt, exercise_number):
         "https://seal-app-pmncf.ondigitalocean.app/api/validate",
         headers=headers,
         json={
-                "prompt": "crie uma função que recebe dois argumentos numericos e retorna a soma deles",
-                "function_id": "A1-E2",
-                "user_email": "user@example.com"
+                "prompt": user_prompt,
+                "function_id": exercise_number,
+                "user_email": email
             }
         )
 
@@ -156,29 +156,29 @@ def validate(user_prompt, exercise_number):
 
 
 
-def validate2(func, inputs, outfunc, outputs, exercise_number):
-    answers_status = True
-    outputs = [True for x in inputs] if outputs == None else outputs
-    validate_output = "Parabéns!"
-
-    for k, v in zip(inputs, outputs):
-        ans = func(*k)
-        result = None
-        try:
-            result = outfunc(ans, k) == v
-            if not result:
-                answers_status = False
-                print(f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}")
-        except ValueError:
-            pass
-            if not result.all():
-                answers_status = False
-                print(f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}")
-    df = gether_data("")
-    df2 = explode_and_merge(df, "id")
-    df3 = change_pct(df2)
-    out = get_data(answers_status, exercise_number)
-    return out, validate_output
+# def validate2(func, inputs, outfunc, outputs, exercise_number):
+#     answers_status = True
+#     outputs = [True for x in inputs] if outputs == None else outputs
+#     validate_output = "Parabéns!"
+#
+#     for k, v in zip(inputs, outputs):
+#         ans = func(*k)
+#         result = None
+#         try:
+#             result = outfunc(ans, k) == v
+#             if not result:
+#                 answers_status = False
+#                 print(f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}")
+#         except ValueError:
+#             pass
+#             if not result.all():
+#                 answers_status = False
+#                 print(f"Resposta incorreta. {func.__name__}({k}) deveria ser {v}, mas retornou {ans}")
+#     df = gether_data("")
+#     df2 = explode_and_merge(df, "id")
+#     df3 = change_pct(df2)
+#     out = get_data(answers_status, exercise_number)
+#     return out, validate_output
 
 def init_log():
     ip = get_ipython()
