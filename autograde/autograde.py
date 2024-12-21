@@ -96,16 +96,23 @@ def print_test_results(result):
     :param result: Dictionary containing the result data.
     """
     print(f"Codigo gerado: {result['code']}")
-    passed_tests = [test for test in result["test_results"] if test["passed"] == True]
-    failed_tests = [test for test in result["test_results"] if test["passed"] == False]
+
 
     # Print passed tests
-    if passed_tests:
-        print("\n✅ Passed Test Cases:")
-        for test in passed_tests:
-            print(f"  - Test ID: {test['testcase_id']}")
+    if len(result["test_results"]) == 1:
+        if result["test_results"][0]["passed"]==True:
+            print("\n✅ Passed the Test Case!")
+        else:
+            print("\n❌ Failed the Test Case")
     else:
-        print("\n✅ No tests passed.")
+        passed_tests = [test for test in result["test_results"] if test["passed"] == True]
+        failed_tests = [test for test in result["test_results"] if test["passed"] == False]
+        if passed_tests:
+            print("\n✅ Passed Test Cases:")
+            for test in passed_tests:
+                print(f"  - Test ID: {test['testcase_id']}")
+        else:
+            print("\n✅ No tests passed.")
 
     # Print failed tests
     if failed_tests:
