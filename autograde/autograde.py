@@ -153,14 +153,14 @@ def print_test_results(result):
     # print("\nDetailed Test Results:")
 
     # Separate passed and failed tests
-    passed_tests = [test for test in result["test_results"] if test["status"] == "pass"]
-    failed_tests = [test for test in result["test_results"] if test["status"] != "pass"]
+    passed_tests = [test for test in result["test_results"] if test["passed"] == True]
+    failed_tests = [test for test in result["test_results"] if test["passed"] == False]
 
     # Print passed tests
     if passed_tests:
         print("\n✅ Passed Test Cases:")
         for test in passed_tests:
-            print(f"  - Test ID: {test['test_id']}")
+            print(f"  - Test ID: {test['testcase_id']}")
     else:
         print("\n✅ No tests passed.")
 
@@ -168,7 +168,7 @@ def print_test_results(result):
     if failed_tests:
         print("\n❌ Failed Test Cases:")
         for test in failed_tests:
-            print(f"  - Test ID: {test['test_id']}")
+            print(f"  - Test ID: {test['testcase_id']}")
     else:
         print("\n❌ No tests failed.")
 
