@@ -8,6 +8,20 @@ import numpy as np
 import pandas as pd
 import os
 from IPython import get_ipython
+import openai
+
+
+def get_support_data():
+    from autograde.defs import datasets
+
+    course = os.getenv("COURSE")
+    if course is None:
+        print("Execute a célula que define o nome do curso. Exemplo: %env COURSE nome_curso", sys.stderr)
+        return False, False
+    ip = get_ipython()
+    student_email = ip.getoutput("gcloud config get-value account")[0]
+    token = ip.getoutput("gcloud auth print-access-token")[0]
+    return course, student_email, token
 
 
 def get_data(answers_status, exercise_number):
@@ -75,7 +89,7 @@ def get_current_log_errors(ip):
     return current_log, current_errors
 
 
-def validate(func, inputs, outfunc, outputs, exercise_number):
+def validate_old(func, inputs, outfunc, outputs, exercise_number):
     """
     :param func: função que vai ser testada
     :param inputs: lista de listas de argumentos a serem repassados para a função que o aluno desenvolveu
@@ -114,6 +128,32 @@ def validate(func, inputs, outfunc, outputs, exercise_number):
         if not found_course:
             validate_output = "Erro na validação."
         return out_status, validate_output
+
+
+def validate(user_prompt, exercise_number):
+    """
+    :param user_prompt: Prompt describing the function
+    :param exercise_number: Number of the exercise for submission
+    :return:
+    """
+
+    course, email, token = get_support_data()
+    headers = {
+        "Authorization": f"Bearer {token}"
+    }
+
+    response = requests.post(
+        "https://seal-app-pmncf.ondigitalocean.app/api/validate",
+        headers=headers,
+        json={
+                "prompt": "crie uma função que recebe dois argumentos numericos e retorna a soma deles",
+                "function_id": "A1-E2",
+                "user_email": "user@example.com"
+            }
+        )
+
+    print("Server Response:", response.json())
+
 
 
 def validate2(func, inputs, outfunc, outputs, exercise_number):
