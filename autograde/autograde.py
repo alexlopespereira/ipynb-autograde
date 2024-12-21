@@ -161,7 +161,11 @@ def validate(user_prompt, exercise_number):
             }
         )
 
-    print("Server Response:", response)
+    if response.status_code >= 400:
+        print(f"Error: {response.status_code} - {response.reason}")
+        print("Details:", response.text)
+    else:
+        print("Server Response:", response.json())
 
 
 
