@@ -138,6 +138,40 @@ def get_current_log_errors(ip):
 #             validate_output = "Erro na validação."
 #         return out_status, validate_output
 
+def print_test_results(result):
+    """
+    Prints the test case results to the student, indicating which test cases passed and which did not.
+
+    :param result: Dictionary containing the result data.
+    """
+    # print(f"Function ID: {result['function_id']}")
+    # print(f"User Email: {result['user_email']}")
+    # print("\nTest Results Summary:")
+    # print(f"Total Tests: {result['total_tests']}")
+    # print(f"Passed Tests: {result['passed_tests']}")
+    # print(f"Success Rate: {result['success_rate'] * 100:.2f}%")
+    # print("\nDetailed Test Results:")
+
+    # Separate passed and failed tests
+    passed_tests = [test for test in result["test_results"] if test["status"] == "pass"]
+    failed_tests = [test for test in result["test_results"] if test["status"] != "pass"]
+
+    # Print passed tests
+    if passed_tests:
+        print("\n✅ Passed Test Cases:")
+        for test in passed_tests:
+            print(f"  - Test ID: {test['test_id']}")
+    else:
+        print("\n✅ No tests passed.")
+
+    # Print failed tests
+    if failed_tests:
+        print("\n❌ Failed Test Cases:")
+        for test in failed_tests:
+            print(f"  - Test ID: {test['test_id']}")
+    else:
+        print("\n❌ No tests failed.")
+
 
 def validate(user_prompt, exercise_number):
     """
@@ -165,7 +199,8 @@ def validate(user_prompt, exercise_number):
         print(f"Error: {response.status_code} - {response.reason}")
         print("Details:", response.text)
     else:
-        print("Server Response:", response.json())
+        print_test_results(response.json())
+        # print("Server Response:", response.json())
 
 
 
