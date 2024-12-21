@@ -11,6 +11,19 @@ from IPython import get_ipython
 import openai
 
 
+# def get_support_data():
+#     from autograde.defs import datasets
+#
+#     course = os.getenv("COURSE")
+#     if course is None:
+#         print("Execute a célula que define o nome do curso. Exemplo: %env COURSE nome_curso", sys.stderr)
+#         return False, False
+#     ip = get_ipython()
+#     student_email = ip.getoutput("gcloud config get-value account")[0]
+#     token = ip.getoutput("gcloud auth print-access-token")[0]
+#     return course, student_email, token
+
+
 def get_support_data():
     from autograde.defs import datasets
 
@@ -18,11 +31,7 @@ def get_support_data():
     if course is None:
         print("Execute a célula que define o nome do curso. Exemplo: %env COURSE nome_curso", sys.stderr)
         return False, False
-    ip = get_ipython()
-    student_email = ip.getoutput("gcloud config get-value account")[0]
-    token = ip.getoutput("gcloud auth print-access-token")[0]
-    return course, student_email, token
-
+    return "mba", "alexlopespereira@gmail.com", "token"
 
 def get_data(answers_status, exercise_number):
     from autograde.defs import datasets
@@ -152,7 +161,7 @@ def validate(user_prompt, exercise_number):
             }
         )
 
-    print("Server Response:", response.json())
+    print("Server Response:", response)
 
 
 
@@ -222,3 +231,6 @@ def change_pct(df):
     df_merge['change_pct'] = (df_merge['close'] - df_merge['close_desloc']) / df_merge['close_desloc']
     df_pivot = df_merge.pivot('date', 'symbol', 'change_pct')
     return df_pivot
+
+if __name__ == "__main__":
+    validate("crie uma função que recebe dois argumentos numericos e retorna a soma deles", "A2-E1")
