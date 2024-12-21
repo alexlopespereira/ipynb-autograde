@@ -105,7 +105,7 @@ def print_test_results(result):
         else:
             print("\n❌ Failed the Test Case:")
             print(f'expected: {result["test_results"][0]["expected"]}')
-            print(f'generated: {result["test_results"][0]["acutal"]}')
+            print(f'generated: {result["test_results"][0]["actual"]}')
     else:
         passed_tests = [test for test in result["test_results"] if test["passed"] == True]
         failed_tests = [test for test in result["test_results"] if test["passed"] == False]
