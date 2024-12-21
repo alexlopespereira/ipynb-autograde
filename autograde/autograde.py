@@ -11,21 +11,21 @@ from IPython import get_ipython
 import openai
 
 
-# def get_support_data():
-#     from autograde.defs import datasets
-#
-#     course = os.getenv("COURSE")
-#     if course is None:
-#         print("Execute a célula que define o nome do curso. Exemplo: %env COURSE nome_curso", sys.stderr)
-#         return False, False
-#     ip = get_ipython()
-#     student_email = ip.getoutput("gcloud config get-value account")[0]
-#     token = ip.getoutput("gcloud auth print-access-token")[0]
-#     return course, student_email, token
-
-
 def get_support_data():
     from autograde.defs import datasets
+
+    course = os.getenv("COURSE")
+    if course is None:
+        print("Execute a célula que define o nome do curso. Exemplo: %env COURSE nome_curso", sys.stderr)
+        return False, False
+    ip = get_ipython()
+    student_email = ip.getoutput("gcloud config get-value account")[0]
+    token = ip.getoutput("gcloud auth print-access-token")[0]
+    return course, student_email, token
+
+
+# def get_support_data():
+#     from autograde.defs import datasets
 
     course = os.getenv("COURSE")
     if course is None:
