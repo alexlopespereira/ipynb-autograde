@@ -24,15 +24,6 @@ def get_support_data():
     return course, student_email, token
 
 
-# def get_support_data():
-#     from autograde.defs import datasets
-
-    course = os.getenv("COURSE")
-    if course is None:
-        print("Execute a célula que define o nome do curso. Exemplo: %env COURSE nome_curso", sys.stderr)
-        return False, False
-    return "mba", "alexlopespereira@gmail.com", "token"
-
 def get_data(answers_status, exercise_number):
     from autograde.defs import datasets
 
