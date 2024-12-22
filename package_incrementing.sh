@@ -1,9 +1,8 @@
 #!/bin/bash
 
-export PYPI_TOKEN=$(cat ipytoken)
 # Extract the current version from the command
 #current_version="0.0.69" # Replace this with your initial version
-echo $PYPI_TOKEN
+
 current_version=$(cat current_version.txt)
 
 # Split the version into its parts (major.minor.patch)

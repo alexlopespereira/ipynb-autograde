@@ -2,6 +2,8 @@
 #Usage: ./package.sh 0.0.28 "incremental improvements"
 tag=$1
 message=$2
+export PYPI_TOKEN=$(cat ipytoken)
+
 rm ./dist/*.gz
 sed "s/\${TAG}/${tag}/g" ./setup_template.py >./setup.py
 
@@ -12,4 +14,4 @@ git push origin "${tag}"
 #python setup.py sdist
 python setup.py build_ext --inplace
 python setup.py sdist bdist_wheel
-twine upload dist/*
+twine upload dist/* -u __token__ -p "$PYPI_TOKEN"
