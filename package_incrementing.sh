@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export PYPI_TOKEN=$(cat ipytoken.txt)
 # Extract the current version from the command
 current_version="0.0.69" # Replace this with your initial version
 

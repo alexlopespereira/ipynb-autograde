@@ -95,7 +95,7 @@ def print_test_results(result):
 
     :param result: Dictionary containing the result data.
     """
-    print(f"Codigo gerado: {result['code']}")
+    print(f"Codigo gerado: \n{result['code']}")
 
 
     # Print passed tests
