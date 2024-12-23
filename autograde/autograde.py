@@ -97,33 +97,43 @@ def print_test_results(result):
     """
     print(f"Codigo gerado: \n{result['code']}")
 
-
-    # Print passed tests
+    # Check if there's only one test case
     if len(result["test_results"]) == 1:
-        if result["test_results"][0]["passed"]==True:
+        test = result["test_results"][0]
+        if test["passed"]:
             print("\n✅ Passed the Test Case!")
+            print(f"  Expected: {test['expected']}")
+            print(f"  Delivered: {test['actual']}")
         else:
             print("\n❌ Failed the Test Case:")
-            print(f'expected: {result["test_results"][0]["expected"]}')
-            if result["test_results"][0]["actual"] is None:
-                print(f'error while running the code: {result["test_results"][0]["error"]}')
+            print(f'  Expected: {test["expected"]}')
+            if test["actual"] is None:
+                print(f'  Error while running the code: {test["error"]}')
             else:
-                print(f'generated: {result["test_results"][0]["actual"]}')
+                print(f'  Delivered: {test["actual"]}')
     else:
-        passed_tests = [test for test in result["test_results"] if test["passed"] == True]
-        failed_tests = [test for test in result["test_results"] if test["passed"] == False]
+        # Separate passed and failed tests
+        passed_tests = [test for test in result["test_results"] if test["passed"]]
+        failed_tests = [test for test in result["test_results"] if not test["passed"]]
+
+        # Print passed tests with details
         if passed_tests:
             print("\n✅ Passed Test Cases:")
             for test in passed_tests:
-                print(f"  - Test ID: {test['testcase_id']}")
+                print(f"  - Test ID: {test['testcase_id']}: {test['expected']}")
         else:
             print("\n✅ No tests passed.")
 
-        # Print failed tests
+        # Print failed tests with detailed information
         if failed_tests:
             print("\n❌ Failed Test Cases:")
             for test in failed_tests:
                 print(f"  - Test ID: {test['testcase_id']}")
+                print(f"    Expected: {test['expected']}")
+                if test["actual"] is None:
+                    print(f"    Error while running the code: {test['error']}")
+                else:
+                    print(f"    Delivered: {test['actual']}")
         else:
             print("\n❌ No tests failed.")
 
