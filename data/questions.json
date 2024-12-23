@@ -3,9 +3,9 @@
   {"input": [[10, 20, 30]], "expected": 0, "function_id": "A2-E18", "testcase_id": "2"},
   {"input": [[0, 0, 0, 0, 999]], "expected": 4, "function_id": "A2-E18", "testcase_id": "3"},
 
-  {"input": ["Hello World!"], "expected": "H3110 W@rld!", "function_id": "A2-E17", "testcase_id": "1"},
+  {"input": ["Hello World!"], "expected": "H3110 W0rld!", "function_id": "A2-E17", "testcase_id": "1"},
   {"input": ["STEAK"], "expected": "5734K", "function_id": "A2-E17", "testcase_id": "2"},
-  {"input": ["Programming is easy"], "expected": "Pr@gr4mming 15 345y", "function_id": "A2-E17", "testcase_id": "3"},
+  {"input": ["Programming is easy"], "expected": "Pr0gr4mming 15 345y", "function_id": "A2-E17", "testcase_id": "3"},
 
   {"input": ["Hi world"], "expected": "HW", "function_id": "A2-E16", "testcase_id": "1"},
   {"input": ["xxx"], "expected": "X", "function_id": "A2-E16", "testcase_id": "2"},
