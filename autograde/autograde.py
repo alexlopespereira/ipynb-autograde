@@ -8,7 +8,6 @@ import numpy as np
 import pandas as pd
 import os
 from IPython import get_ipython
-import openai
 
 
 def get_support_data():
