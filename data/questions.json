@@ -1,17 +1,35 @@
 [
-    {"input": ["https://www.servicos.gov.br/api/v1/servicos/orgao/315"], "expected": "45.59%", "function_id": "A2-E12", "testcase_id": "1"},
+  {"input": [[0, 2, 3, 4, 5, 6, 0]], "expected": 2, "function_id": "A2-E18", "testcase_id": "1"},
+  {"input": [[10, 20, 30]], "expected": 0, "function_id": "A2-E18", "testcase_id": "2"},
+  {"input": [[0, 0, 0, 0, 999]], "expected": 4, "function_id": "A2-E18", "testcase_id": "3"},
+
+  {"input": ["Hello World!"], "expected": "H3110 W@rld!", "function_id": "A2-E17", "testcase_id": "1"},
+  {"input": ["STEAK"], "expected": "5734K", "function_id": "A2-E17", "testcase_id": "2"},
+  {"input": ["Programming is easy"], "expected": "Pr@gr4mming 15 345y", "function_id": "A2-E17", "testcase_id": "3"},
+
+  {"input": ["Hi world"], "expected": "HW", "function_id": "A2-E16", "testcase_id": "1"},
+  {"input": ["xxx"], "expected": "X", "function_id": "A2-E16", "testcase_id": "2"},
+  {"input": ["abd def ghi"], "expected": "ADG", "function_id": "A2-E16", "testcase_id": "3"},
+
+  {"input": ["mossy", 1], "expected": "npttz", "function_id": "A2-E15", "testcase_id": "1"},
+  {"input": ["racecar", 3], "expected": "udfhfdu", "function_id": "A2-E15", "testcase_id": "2"},
+  {"input": ["hello", 0], "expected": "hello", "function_id": "A2-E15", "testcase_id": "3"},
+  {"input": ["hello", -1], "expected": "gdkkn", "function_id": "A2-E15", "testcase_id": "4"},
+  {"input": ["zoo", 2], "expected": "bqq", "function_id": "A2-E15", "testcase_id": "5"},
+
+  {"input": ["AaBbCcDd"], "expected": "ABCDdcba", "function_id": "A2-E14", "testcase_id": "1"},
+  {"input": ["MOM DAD"], "expected": "ADDMMO", "function_id": "A2-E14", "testcase_id": "2"},
+  {"input": ["Mom Dad"], "expected": "DMomda", "function_id": "A2-E14", "testcase_id": "3"},
+  {"input": ["A Testing TEST"], "expected": "AESTTTtsnige", "function_id": "A2-E14", "testcase_id": "4"},
+  {"input": ["A1B2 !@ C3D4"], "expected": "ABCD", "function_id": "A2-E14", "testcase_id": "5"},
+
+  {"input": [[1, 2, 3, 4]], "expected": [1, 2, 2, 3, 3, 3, 4, 4, 4, 41], "function_id": "A2-E13", "testcase_id": "1"},
+  {"input": [5], "expected": [5, 5, 5, 5, 5], "function_id": "A2-E13", "testcase_id": "2"},
+  {"input": [[2, 0, 1, 3]], "expected": [2, 2, 1, 3, 3, 3], "function_id": "A2-E13", "testcase_id": "3"},
+
+  {"input": ["https://www.servicos.gov.br/api/v1/servicos/orgao/315"], "expected": "45.59%", "function_id": "A2-E12", "testcase_id": "1"},
   {"input": ["https://www.servicos.gov.br/api/v1/servicos/orgao/315"], "expected": {"13387": {"nome": "Solicitar doação de material de divulgação em triatomíneos (barbeiros - vetores da doença de Chagas) - Fiocruz/RJ",
-  "sigla": "",
-  "servicoDigital": "Sim",
-  "nomeOrgao": "Fundação Oswaldo Cruz (FIOCRUZ)"},
- "9026": {"nome": "Solicitar cópia de vídeos do Acervo da VídeoSaúde Distribuidora - Fiocruz",
-  "sigla": "",
-  "servicoDigital": "Não",
-  "nomeOrgao": "Fundação Oswaldo Cruz (FIOCRUZ)"},
- "13388": {"nome": "Solicitar identificação de moluscos terrestres - Fiocruz/RJ",
-  "sigla": "",
-  "servicoDigital": "Não",
-  "nomeOrgao": "Fundação Oswaldo Cruz (FIOCRUZ)"}
+  "sigla": "",  "servicoDigital": "Sim",  "nomeOrgao": "Fundação Oswaldo Cruz (FIOCRUZ)"}, "9026": {"nome": "Solicitar cópia de vídeos do Acervo da VídeoSaúde Distribuidora - Fiocruz",  "sigla": "", "servicoDigital": "Não",  "nomeOrgao": "Fundação Oswaldo Cruz (FIOCRUZ)"}, "13388": {"nome": "Solicitar identificação de moluscos terrestres - Fiocruz/RJ",  "sigla": "",  "servicoDigital": "Não",  "nomeOrgao": "Fundação Oswaldo Cruz (FIOCRUZ)"}
 }, "function_id": "A2-E11", "testcase_id": "1"},
   {"input": [{"Joao": 10, "Jose": 5, "Roberta": 9, "Maria": 6}, 7], "expected": [5, 6], "function_id": "A2-E10", "testcase_id": "1"},
   {"input": [["azul", "amarelo", "vermelho"]], "expected": [{"azul": 0}, {"amarelo": 1}, {"vermelho": 2}], "function_id": "A2-E9", "testcase_id": "1"},
