@@ -48,9 +48,9 @@
   {"input": [{"1": 1, "2": 1, "3": 9, "4": 1, "5": 25}], "expected": {"1": 1, "3": 9, "5": 25}, "function_id": "A3-E2", "testcase_id": "1"},
   {"input": [5], "expected": {"1": 1, "2": 4, "3": 9, "4": 16, "5": 25}, "function_id": "A3-E1", "testcase_id": "1"},
 
-  {"input": ["Celsius",[0, 12, 45.21, 34, 99.91]], "expected": [-17.77, -11.11, 7.33, 1.11, 37.72], "function_id": "A4-E1", "testcase_id": "1", "input_type": {"1":  "str", "2":  "np.array"}, "output_type": "np.array"},
+  {"input": ["Celsius",[0, 12, 45.21, 34, 99.91]], "expected": [-17.77, -11.11, 7.33, 1.11, 37.72], "function_id": "A4-E1", "testcase_id": "1", "input_type": {"1":  "str", "2":  "list"}, "output_type": "np.array"},
 
-  {"input": ["Fahrenheit",[-17.77, -11.11, 7.33, 1.11, 37.72]], "expected": [0, 12, 45.21, 34, 99.91], "function_id": "A4-E1", "testcase_id": "2", "input_type": {"1":  "str", "2":  "np.array"}, "output_type": "np.array"},
+  {"input": ["Fahrenheit",[-17.77, -11.11, 7.33, 1.11, 37.72]], "expected": [0, 12, 45.21, 34, 99.91], "function_id": "A4-E1", "testcase_id": "2", "input_type": {"1":  "str", "2":  "list"}, "output_type": "np.array"},
   {"input": [], "expected": {}, "function_id": "A4-E", "testcase_id": "1"},
   {"input": [], "expected": {}, "function_id": "A4-E", "testcase_id": "1"},
   {"input": [], "expected": {}, "function_id": "A4-E", "testcase_id": "1"},
