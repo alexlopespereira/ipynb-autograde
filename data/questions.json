@@ -1,5 +1,5 @@
 [
-  {"input": [5], "expected": "=\n==\n===\n====\n=====", "function_id": "A2-E7", "testcase_id": "1"},
+  {"input": [5], "expected": "o\noo\nooo\noooo\nooooo", "function_id": "A2-E7", "testcase_id": "1"},
   {"input": [5], "expected": "=====\n====\n===\n==\n=", "function_id": "A2-E8", "testcase_id": "1"},
   {"input": [5], "expected": "=\n==\n===\n====\n=====\n====\n===\n==\n=", "function_id": "A2-E9", "testcase_id": "1"},
   {"input": [5], "expected": "    =\n   ===\n  =====\n =======\n=========", "function_id": "A2-E10", "testcase_id": "1"},
