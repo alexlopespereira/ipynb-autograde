@@ -74,7 +74,8 @@
   {"input": [[1, 2, 3, 4, 5, 6, 7, 50]], "expected": [50], "function_id": "A4-E9", "testcase_id": "2", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [[5, 5, 5, 5, 5, 100, 200]], "expected": [200], "function_id": "A4-E9", "testcase_id": "3", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [[10, 10, 10, 10, 10]], "expected":  [], "function_id": "A4-E9", "testcase_id": "4", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
-  {"input": [["red", "green", "red", "blue", "green", "blue", "red"]], "expected": [[0, 0, 1], [0, 1, 0], [0, 0, 1], [1, 0, 0], [0, 1, 0], [1, 0, 0], [0, 0, 1]], "function_id": "A4-E10", "testcase_id": "1"},
+  {"input": [[[0, 4, 5, "inf"], ["inf", 0, 2, 6], ["inf", "inf", 0, 3], ["inf", "inf", "inf", 0]], ["A", "D"]], "expected": [8, ["A", "C", "D"]], "function_id": "A4-E10", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
+  {"input": [["red", "green", "red", "blue", "green", "blue", "red"]], "expected": [[0, 0, 1], [0, 1, 0], [0, 0, 1], [1, 0, 0], [0, 1, 0], [1, 0, 0], [0, 0, 1]], "function_id": "A4-X11", "testcase_id": "1"},
 
 
   {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
