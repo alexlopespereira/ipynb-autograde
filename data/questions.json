@@ -57,6 +57,7 @@
 
   {"input": [[1, 4, 10, 8, 4, 10, 23], [4, 10]], "expected": 2 , "function_id": "A4-E3", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) listas passadas como argumento e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [[31, 64, 102, 31, 64, 114, 220, 31, 64], [31, 64]], "expected": 3, "function_id": "A4-E3", "testcase_id": "2", "requirements":  ["o código deve converter a (ou as) listas passadas como argumento e utiliza-los no restante das operações, exceto na operação de retorno"]},
+
   {"input": [], "expected": {}, "function_id": "A4-E", "testcase_id": "1"},
   {"input": [], "expected": {}, "function_id": "A4-E", "testcase_id": "1"},
   {"input": [], "expected": {}, "function_id": "A4-E", "testcase_id": "1"},
