@@ -82,7 +82,8 @@
   {"input": [[10, 10, 10, 10, 10]], "expected":  [], "function_id": "A4-E9", "testcase_id": "4", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
 
 
-  {"input": [], "expected": {}, "function_id": "A4-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
+  {"input": [[[0, 4, 5, "inf"], ["inf", 0, 2, 6], ["inf", "inf", 0, 3], ["inf", "inf", "inf", 0]]], "expected": [8, ["A", "C", "D"]], "function_id": "A4-E10", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
+
   {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
