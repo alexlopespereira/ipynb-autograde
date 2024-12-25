@@ -78,8 +78,8 @@
   {"input": [["red", "green", "red", "blue", "green", "blue", "red"]], "expected": [[0, 0, 1], [0, 1, 0], [0, 0, 1], [1, 0, 0], [0, 1, 0], [1, 0, 0], [0, 0, 1]], "function_id": "A4-X11", "testcase_id": "1"},
 
 
-  {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
-  {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
+  {"input": [[[1, 1, 1],[1, 0, 1],[1, 1, 1]]], "expected": 3, "function_id": "A4-X12", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
+  {"input": [[[1, 1, 1, 1, 1, 1],[1, 0, 0, 0, 0, 1],[1, 0, 0, 0, 0, 1],[1, 0, 0, 0, 0, 1],[1, 0, 0, 0, 0, 1],[1, 1, 1, 1, 1, 1]]], "expected": 6, "function_id": "A4-X12", "testcase_id": "2", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]}
