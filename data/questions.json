@@ -29,10 +29,10 @@
 
 
 
-  {"input": [[1, 2, 3, 4, 5]], "expected": {"1": 5, "2": 4, "3": 3, "4": 2, "5": 1}, "function_id": "A3-E14", "testcase_id": "1"},
-  {"input": [[-10, 19099, 102, 3404, 245], 102], "expected": [102], "function_id": "A3-E13", "testcase_id": "1"},
-  {"input": [[0, 12, 45, 34, 99], 40], "expected": [45], "function_id": "A3-E13", "testcase_id": "2"},
-  {"input": [[1, 3, 4], 2], "expected": [1, 3], "function_id": "A3-E13", "testcase_id": "3"},
+  {"input": [[1, 2, 3, 4, 5]], "expected": {"1": 5, "2": 4, "3": 3, "4": 2, "5": 1}, "function_id": "A3-X14", "testcase_id": "1"},
+  {"input": [[-10, 19099, 102, 3404, 245], 102], "expected": [102], "function_id": "A3-X13", "testcase_id": "1"},
+  {"input": [[0, 12, 45, 34, 99], 40], "expected": [45], "function_id": "A3-X13", "testcase_id": "2"},
+  {"input": [[1, 3, 4], 2], "expected": [1, 3], "function_id": "A3-X13", "testcase_id": "3"},
   {"input": ["https://www.servicos.gov.br/api/v1/servicos/orgao/315"], "expected": "45.59%", "function_id": "A3-E12", "testcase_id": "1"},
   {"input": ["https://www.servicos.gov.br/api/v1/servicos/orgao/315"], "expected": {"13387": {"nome": "Solicitar doação de material de divulgação em triatomíneos (barbeiros - vetores da doença de Chagas) - Fiocruz/RJ",
   "sigla": "",  "servicoDigital": "Sim",  "nomeOrgao": "Fundação Oswaldo Cruz (FIOCRUZ)"}, "9026": {"nome": "Solicitar cópia de vídeos do Acervo da VídeoSaúde Distribuidora - Fiocruz",  "sigla": "", "servicoDigital": "Não",  "nomeOrgao": "Fundação Oswaldo Cruz (FIOCRUZ)"}, "13388": {"nome": "Solicitar identificação de moluscos terrestres - Fiocruz/RJ",  "sigla": "",  "servicoDigital": "Não",  "nomeOrgao": "Fundação Oswaldo Cruz (FIOCRUZ)"}
@@ -80,11 +80,10 @@
   {"input": [[1, 2, 3, 4, 5, 6, 7, 50]], "expected": [50], "function_id": "A4-E9", "testcase_id": "2", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [[5, 5, 5, 5, 5, 100, 200]], "expected": [200], "function_id": "A4-E9", "testcase_id": "3", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [[10, 10, 10, 10, 10]], "expected":  [], "function_id": "A4-E9", "testcase_id": "4", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
-
-
   {"input": [[[0, 4, 5, "inf"], ["inf", 0, 2, 6], ["inf", "inf", 0, 3], ["inf", "inf", "inf", 0]], ["A", "D"]], "expected": [8, ["A", "C", "D"]], "function_id": "A4-E10", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
+  {"input": [["red", "green", "red", "blue", "green", "blue", "red"]], "expected": [[0, 0, 1], [0, 1, 0], [0, 0, 1], [1, 0, 0], [0, 1, 0], [1, 0, 0], [0, 0, 1]], "function_id": "A4-X11", "testcase_id": "1"},
 
-  {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
+
   {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para numpy array e utiliza-los no restante das operações, exceto na operação de retorno"]},
