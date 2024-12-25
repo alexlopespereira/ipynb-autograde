@@ -50,7 +50,7 @@
 
   {"input": ["Celsius",[0, 12, 45.2, 34, 99.9]], "expected": [-17.8, -11.2, 7.3, 1.1, 37.7], "function_id": "A4-E1", "testcase_id": "1", "input_type": {"1":  "str", "2":  "list"}, "output_type": "list", "requirements":  ["o código deve utilizar a numpy arrays"]},
 
-  {"input": ["Fahrenheit",[-17, -11, 7, 1, 37]], "expected": [0.1, 12.0, 45.1, 33.9, 99.8], "function_id": "A4-E1", "testcase_id": "2", "input_type": {"1":  "str", "2":  "list"}, "output_type": "list", "requirements":  ["o código deve utilizar a numpy arrays"]},
+  {"input": ["Fahrenheit",[-17, -11, 7, 1, 37]], "expected": [1.3, 12.2, 44.6, 33.8, 98.6], "function_id": "A4-E1", "testcase_id": "2", "input_type": {"1":  "str", "2":  "list"}, "output_type": "list", "requirements":  ["o código deve utilizar a numpy arrays"]},
   {"input": [], "expected": {}, "function_id": "A4-E", "testcase_id": "1"},
   {"input": [], "expected": {}, "function_id": "A4-E", "testcase_id": "1"},
   {"input": [], "expected": {}, "function_id": "A4-E", "testcase_id": "1"},
