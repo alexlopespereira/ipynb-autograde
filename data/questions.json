@@ -63,9 +63,7 @@
   {"input": [[2,4]], "expected": [0, 1], "function_id": "A4-E5", "testcase_id": "2", "requirements":  ["o código deve converter a (ou as) listas passadas como argumento e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [[1, 10, 100, 1000]], "expected": [0.0, 0.009, 0.099, 1.0], "function_id": "A4-E5", "testcase_id": "3", "requirements":  ["o código deve converter a (ou as) listas passadas como argumento e utiliza-los no restante das operações, exceto na operação de retorno"]},
 
-
-
-  {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  []},
-  {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  []}
+  {"input": [[0, 15, 25, 29, 40]], "expected": ["Frio", "Frio", "Moderado", "Moderado", "Quente"], "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) listas passadas como argumento e utiliza-los no restante das operações, exceto na operação de retorno"]},
+  {"input": [], "expected": {}, "function_id": "A3-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) listas passadas como argumento e utiliza-los no restante das operações, exceto na operação de retorno"]}
 
 ]
