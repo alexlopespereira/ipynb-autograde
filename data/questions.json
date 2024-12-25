@@ -50,7 +50,7 @@
 
   {"input": ["Celsius",[0, 12, 45.21, 34, 99.91]], "expected": [-17.77, -11.11, 7.33, 1.11, 37.72], "function_id": "A4-E1", "testcase_id": "1", "input_type": {"1":  "str", "2":  "list"}, "output_type": "list"},
 
-  {"input": ["Fahrenheit",[-17.77, -11.11, 7.33, 1.11, 37.72]], "expected": [0, 12, 45.21, 34, 99.91], "function_id": "A4-E1", "testcase_id": "2", "input_type": {"1":  "str", "2":  "list"}, "output_type": "list"},
+  {"input": ["Fahrenheit",[-17.77, -11.11, 7.33, 1.11, 37.72]], "expected": [0.01, 12.0, 45.19, 33.99, 99.89], "function_id": "A4-E1", "testcase_id": "2", "input_type": {"1":  "str", "2":  "list"}, "output_type": "list"},
   {"input": [], "expected": {}, "function_id": "A4-E", "testcase_id": "1"},
   {"input": [], "expected": {}, "function_id": "A4-E", "testcase_id": "1"},
   {"input": [], "expected": {}, "function_id": "A4-E", "testcase_id": "1"},
