@@ -87,11 +87,11 @@
   {"input": [[{"name": "Anastasia", "score": 12.5, "attempts": 1, "qualify": "yes"},
  {"name": "Dima", "score": 9.0, "attempts": 3, "qualify": "no"},
  {"name": "Katherine", "score": 16.5, "attempts": 2, "qualify": "yes"},
- {"name": "James", "score": None, "attempts": 3, "qualify": "no"},
+ {"name": "James", "score": "", "attempts": 3, "qualify": "no"},
  {"name": "Emily", "score": 9.0, "attempts": 2, "qualify": "no"},
  {"name": "Michael", "score": 20.0, "attempts": 3, "qualify": "yes"},
  {"name": "Matthew", "score": 14.5, "attempts": 1, "qualify": "yes"},
- {"name": "Laura", "score": None, "attempts": 1, "qualify": "no"}]], "expected": [{"name": "James", "score": None, "attempts": 3, "qualify": "no"}, {"name": "Laura", "score": None, "attempts": 1, "qualify": "no"}], "function_id": "A5-E3", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para pandas series e utiliza-los no restante das operações, exceto na operação de retorno"]},
+ {"name": "Laura", "attempts": 1, "qualify": "no"}]], "expected": [{"name": "James", "attempts": 3, "qualify": "no"}, {"name": "Laura", "score": None, "attempts": 1, "qualify": "no"}], "function_id": "A5-E3", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para pandas series e utiliza-los no restante das operações, exceto na operação de retorno"]},
   {"input": [], "expected": {}, "function_id": "A5-E", "testcase_id": "1", "requirements":  ["o código deve converter a (ou as) lista(s) passada(s) como argumento para pandas series e utiliza-los no restante das operações, exceto na operação de retorno"]}
 
 ]
