@@ -110,7 +110,7 @@
 
 
   {"input": [["Lisa Watson", "Gilbert Ravenell", "Olga Crocker", "Julie Lewis", "Kimberly Ransome", "Jennifer Daniels", "Jillian Brennan", "Mary Phinney", "Michelle Humphreys"], 42, 4], "expected": {}, "function_id": "A6-E2", "testcase_id": "2", "requirements":  [""]},
-  {"input": [], "expected": {}, "function_id": "A6-E1", "testcase_id": "3", "requirements":  [""]},
+  {"input": [], "expected": {}, "function_id": "A6-E", "testcase_id": "3", "requirements":  [""]},
 
   {"input": [], "expected": {}, "function_id": "A6-E", "testcase_id": "1", "requirements":  [""]}
 ]
