@@ -107,11 +107,11 @@ def print_test_results(result):
         else:
             print("\n❌ Failed the Test Case:")
             print(f'  Expected: {test["expected"]}')
-            if test["actual"] is None:
-                print(f'  Error while running the code: {test["error"]}')
+            if test["actual"] is None or not test["actual"]:
+                print(f'  Error: {test["error"]}')
             else:
                 print(f'  Delivered: {test["actual"]}')
-            print(f"Errors: {test['error']}")
+
     else:
         # Separate passed and failed tests
         passed_tests = [test for test in result["test_results"] if test["passed"]]
