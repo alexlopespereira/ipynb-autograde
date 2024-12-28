@@ -111,6 +111,7 @@ def print_test_results(result):
                 print(f'  Error while running the code: {test["error"]}')
             else:
                 print(f'  Delivered: {test["actual"]}')
+            print(f"Errors: {test['error']}")
     else:
         # Separate passed and failed tests
         passed_tests = [test for test in result["test_results"] if test["passed"]]
