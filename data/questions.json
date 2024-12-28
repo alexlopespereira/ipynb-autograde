@@ -119,7 +119,9 @@
       "validation_rules": {"round_decimals": 1, "row_match_threshold": 0.001}},
     "function_id": "A6-E4", "testcase_id": "1"},
 
-{"input": [{"Municipio": ["110001 Alta Floresta D'Oeste", "110037 Alto Alegre dos Parecis", "110040 Alto Para\u00edso", "110034 Alvorada D'Oeste", "110002 Ariquemes"], "1991": [0.5983, null, null, 0.569, 0.5827], "2000": [0.5868, 0.508, 0.6256, 0.6534, 0.5927], "2010": [0.5893, 0.5491, 0.5417, 0.5355, 0.5496]}],
+{
+  "input_transformation": {"input_type": "dataframe", "replace_index":  0},
+  "input": [{"Municipio": ["110001 Alta Floresta D'Oeste", "110037 Alto Alegre dos Parecis", "110040 Alto Para\u00edso", "110034 Alvorada D'Oeste", "110002 Ariquemes"], "1991": [0.5983, null, null, 0.569, 0.5827], "2000": [0.5868, 0.508, 0.6256, 0.6534, 0.5927], "2010": [0.5893, 0.5491, 0.5417, 0.5355, 0.5496]}],
   "expected": {"type": "dataframe", "data": {"columns": ["Municipio", "1991", "2000", "2010", "cod_ibge6"],
     "sample_rows": [{"filter": {"Municipio": "110001 Alta Floresta D'Oeste"}, "expected_values": {"cod_ibge6": "110001"}},
       {"filter": {"Municipio": "110002 Ariquemes"}, "expected_values": {"cod_ibge6": "110002"}}],
@@ -127,17 +129,8 @@
     "aggregation_checks": {"total_rows": {"min": 5, "max": 5}, "sum": {"1991": 1.7, "2000": 2.9, "2010": 2.7}, "mean": {"1991": 0.5, "2000": 0.5, "2010": 0.5}}},
     "validation_rules": {"round_decimals": 1, "row_match_threshold": 0.001}}, "function_id": "A6-E5", "testcase_id": "1"},
 
-{
-  "input_transformation": {"input_type": "dataframe", "replace_index":  0},
-  "input": [{"Municipio": ["110001 Alta Floresta D'Oeste", "110037 Alto Alegre dos Parecis", "110040 Alto Para\u00edso", "110034 Alvorada D'Oeste", "110002 Ariquemes"], "1991": [0.5983, null, null, 0.569, 0.5827], "2000": [0.5868, 0.508, 0.6256, 0.6534, 0.5927], "2010": [0.5893, 0.5491, 0.5417, 0.5355, 0.5496]}],
-  "expected": {"type": "dataframe",
-    "data": {"columns": ["Municipio", "1991", "2000", "2010", "cod_ibge6"],
-      "sample_rows": [{"filter": {"Municipio": "110001 Alta Floresta D'Oeste"}, "expected_values": {"cod_ibge6": "110001"}},
-        {"filter": {"Municipio": "110002 Ariquemes"}, "expected_values": {"cod_ibge6": "110002"}}],
-      "dtypes": {"Municipio": "object", "1991": "float64", "2000": "float64", "2010": "float64", "cod_ibge6": "object"},
-      "aggregation_checks": {"total_rows": {"min": 5, "max": 5}, "sum": {"1991": 1.7, "2000": 2.9, "2010": 2.7}, "mean": {"1991": 0.5, "2000": 0.5, "2010": 0.5}}},
-    "validation_rules": {"round_decimals": 1, "row_match_threshold": 0.001}},
-  "function_id": "A6-E5", "testcase_id": "1"},
+{"input": ["https://github.com/alexlopespereira/mba_enap/raw/refs/heads/main/data/originais/morbidade/consolidado/morbidade.csv"], "expected": {"type": "dataframe", "data": {"columns": ["Munic\u00edpio", "Interna\u00e7\u00f5es", "AIH_aprovadas", "Valor_total", "Valor_servi\u00e7os_hospitalares", "Valor_m\u00e9dio_AIH", "Valor_m\u00e9dio_intern", "Dias_perman\u00eancia", "M\u00e9dia_perman\u00eancia", "\u00d3bitos", "Taxa_mortalidade", "mes", "ano", "mes_ano", "cod_ibge6"], "sample_rows": [{"filter": {"cod_ibge6": "530010", "mes_ano": "2020-01-01"}, "expected_values": {"Interna\u00e7\u00f5es": 15827.0}}, {"filter": {"cod_ibge6": "110001", "mes_ano": "2019-12-01"}, "expected_values": {"Interna\u00e7\u00f5es": 193.0}}], "dtypes": {"Munic\u00edpio": "object", "Interna\u00e7\u00f5es": "float64", "AIH_aprovadas": "int64", "Valor_total": "float64", "Valor_servi\u00e7os_hospitalares": "float64", "Valor_m\u00e9dio_AIH": "float64", "Valor_m\u00e9dio_intern": "float64", "Dias_perman\u00eancia": "float64", "M\u00e9dia_perman\u00eancia": "float64", "\u00d3bitos": "float64", "Taxa_mortalidade": "float64", "mes": "object", "ano": "int64", "mes_ano": "object", "cod_ibge6": "object"}, "aggregation_checks": {"total_rows": {"min": 83255, "max": 83255}, "sum": {"Interna\u00e7\u00f5es": 13266196.0, "AIH_aprovadas": 13465128.0, "Valor_total": 19933340123.9, "Valor_servi\u00e7os_hospitalares": 16109643481.0, "Valor_m\u00e9dio_AIH": 116094865.4, "Valor_m\u00e9dio_intern": 117601827.2, "Dias_perman\u00eancia": 71643038.0, "M\u00e9dia_perman\u00eancia": 402709.5, "\u00d3bitos": 714472.0, "Taxa_mortalidade": 421790.0, "ano": 168158391.0}, "mean": {"Interna\u00e7\u00f5es": 159.3, "AIH_aprovadas": 161.7, "Valor_total": 239425.1, "Valor_servi\u00e7os_hospitalares": 193497.6, "Valor_m\u00e9dio_AIH": 1394.4, "Valor_m\u00e9dio_intern": 1412.5, "Dias_perman\u00eancia": 860.7, "M\u00e9dia_perman\u00eancia": 4.8, "\u00d3bitos": 10.7, "Taxa_mortalidade": 6.3, "ano": 2019.7}}}, "validation_rules": {"round_decimals": 1, "row_match_threshold": 0.01}}, "function_id": "A6-E6", "testcase_id": "1"},
+
 
   {"input": [], "expected": {}, "function_id": "A6-E", "testcase_id": "1", "requirements":  [""]}
 ]
