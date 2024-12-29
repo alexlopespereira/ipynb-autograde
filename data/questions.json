@@ -160,5 +160,5 @@
 
 
 
-  {"input": [], "expected": {}, "function_id": "A6-E", "testcase_id": "1", "requirements":  [""]}
+{"input": [], "expected": {}, "function_id": "A6-E", "testcase_id": "1", "requirements":  [""]}
 ]
