@@ -164,7 +164,7 @@
 
 {"input": ["abbb asde ababbaaabbbabbb"], "expected": ["abbb", "abbb", "abbb"], "function_id": "A8-E1", "testcase_id": "1", "requirements":  [""]},
 {"input": ["ab bb bba aaa"], "expected": [], "function_id": "A8-E1", "testcase_id": "2", "requirements":  [""]},
-{"input": ["abbb asde ababbaaabbbabbb"], "expected": ["abbb"], "function_id": "A8-E1", "testcase_id": "3", "requirements":  [""]},
+{"input": ["abb bb bbabbba abaaba"], "expected": ["abbb"], "function_id": "A8-E1", "testcase_id": "3", "requirements":  [""]},
 
 {"input": ["33a307a"], "expected": [], "function_id": "A8-E2", "testcase_id": "1", "requirements":  [""]},
 {"input": ["33a307"], "expected": ["307"], "function_id": "A8-E2", "testcase_id": "2", "requirements":  [""]},
