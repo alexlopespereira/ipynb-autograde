@@ -157,7 +157,8 @@ def validate(user_prompt, exercise_number):
         json={
                 "prompt": user_prompt,
                 "function_id": exercise_number,
-                "user_email": email
+                "user_email": email,
+                "course": course
             }
         )
 
