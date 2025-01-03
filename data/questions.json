@@ -1,9 +1,14 @@
 [
+  
+  
+  {"input": [5], "expected": "ooooo\no   o\no   o\no   o\nooooo", "function_id": "A2-E11", "testcase_id": "1"},
+  {"input": [5], "expected": "    o\n   ooo\n  ooooo\n ooooooo\nooooooooo", "function_id": "A2-E10", "testcase_id": "1"},
+  {"input": [6], "expected": "o\noo\nooo\noooo\nooooo\noooooo\nooooo\noooo\nooo\noo\no", "function_id": "A2-E9", "testcase_id": "2"},
+  {"input": [5], "expected": "o\noo\nooo\noooo\nooooo\noooo\nooo\noo\no", "function_id": "A2-E9", "testcase_id": "1"},
+  {"input": [6], "expected": "oooooo\nooooo\noooo\nooo\noo\no", "function_id": "A2-E8", "testcase_id": "2"},
+  {"input": [5], "expected": "ooooo\noooo\nooo\noo\no", "function_id": "A2-E8", "testcase_id": "1"},
+  {"input": [6], "expected": "o\noo\nooo\noooo\nooooo\noooooo", "function_id": "A2-E7", "testcase_id": "2"},
   {"input": [5], "expected": "o\noo\nooo\noooo\nooooo", "function_id": "A2-E7", "testcase_id": "1"},
-  {"input": [5], "expected": "=====\n====\n===\n==\n=", "function_id": "A2-E8", "testcase_id": "1"},
-  {"input": [5], "expected": "=\n==\n===\n====\n=====\n====\n===\n==\n=", "function_id": "A2-E9", "testcase_id": "1"},
-  {"input": [5], "expected": "    =\n   ===\n  =====\n =======\n=========", "function_id": "A2-E10", "testcase_id": "1"},
-  {"input": [5], "expected": "=====\n=   =\n=   =\n=   =\n=====", "function_id": "A2-E11", "testcase_id": "1"},
   {"input": [[0, 2, 3, 4, 5, 6, 0]], "expected": 2, "function_id": "A2-E6", "testcase_id": "1"},
   {"input": [[10, 20, 30]], "expected": 0, "function_id": "A2-E6", "testcase_id": "2"},
   {"input": [[0, 0, 0, 0, 999]], "expected": 4, "function_id": "A2-E6", "testcase_id": "3"},

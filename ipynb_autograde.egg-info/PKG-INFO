@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: ipynb-autograde
+Version: 0.0.79
+Summary: Autograde for ipynb
+Home-page: https://github.com/alexlopespereira/ipynb-autograde
+Download-URL: https://github.com/alexlopespereira/ipynb-autograde/archive/v0.0.79.tar.gz
+Author: Alex Lopes Pereira
+Author-email: alexlopespereira@gmail.com
+License: GNU Lesser General Public License v3.0
+Keywords: ipynb,notebook,autograde,colab,jupyter
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Intended Audience :: Education
+Classifier: Topic :: Education :: Computer Aided Instruction (CAI)
+Classifier: Topic :: Education :: Testing
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+License-File: LICENSE.txt
+Requires-Dist: setuptools>=57.0.0
+Requires-Dist: requests>=2.25.1
+Requires-Dist: numpy>=1.19.5
+Requires-Dist: pandas>=1.1.5
