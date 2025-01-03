@@ -3,12 +3,14 @@
       {
         "function_id": "A2-E6",
         "deadline": "2024-03-20T23:59:59",
+        "timezone": "UTC-3",
         "description": "Assignment 2 Exercise 6"
       },
       {
         "function_id": "A1-E1",
         "deadline": "2024-03-15T23:59:59",
+        "timezone": "UTC-3",
         "description": "Assignment 1 Exercise 1"
       }
     ]
-  } 
+  }
