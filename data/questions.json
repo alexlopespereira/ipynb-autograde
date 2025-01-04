@@ -1,7 +1,7 @@
 [
   
   
-  {"input": [5], "expected": "oooooo\no    o\no    o\no    o\no    o\noooooo", "function_id": "A2-E11", "testcase_id": "2"},
+  {"input": [6], "expected": "oooooo\no    o\no    o\no    o\no    o\noooooo", "function_id": "A2-E11", "testcase_id": "2"},
   {"input": [5], "expected": "ooooo\no   o\no   o\no   o\nooooo", "function_id": "A2-E11", "testcase_id": "1"},
   {"input": [5], "expected": "     o\n    ooo\n   ooooo\n  ooooooo\n ooooooooo\noooooooooo", "function_id": "A2-E10", "testcase_id": "2"},
   {"input": [5], "expected": "    o\n   ooo\n  ooooo\n ooooooo\nooooooooo", "function_id": "A2-E10", "testcase_id": "1"},
