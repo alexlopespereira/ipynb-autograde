@@ -135,8 +135,8 @@ def print_test_results(result):
                     print(f"    Error while running the code: {test['error']}")
                 else:
                     print(f"    Delivered: {test['actual']}")
-        else:
-            print("\n❌ No tests failed.")
+        #else:
+        #    print("\n❌ No tests failed.")
 
 
 def validate(user_prompt, exercise_number):
@@ -165,8 +165,8 @@ def validate(user_prompt, exercise_number):
     if response.status_code >= 400:
         print(f"Error: {response.status_code} - {response.reason}")
         print("Details:", response.text)
-    else:
-        print_test_results(response.json())
+    #else:
+    #    print_test_results(response.json())
         # print("Server Response:", response.json())
 
 
