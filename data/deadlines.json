@@ -2,32 +2,32 @@
     "mba_enap": {
       "deadlines": [
         {
-          "function_id": "A2-E6",
+          "class_day": "A2",
           "deadline": "2024-03-20T23:59:59",
           "timezone": "UTC-3",
-          "description": "Assignment 2 Exercise 6"
+          "description": "Assignment 2"
         },
         {
-          "function_id": "A1-E1",
+          "class_day": "A1",
           "deadline": "2024-03-15T23:59:59",
           "timezone": "UTC-3",
-          "description": "Assignment 1 Exercise 1"
+          "description": "Assignment 1"
         }
       ]
     },
     "PROG2": {
       "deadlines": [
         {
-          "function_id": "A2-E6",
+          "class_day": "A2",
           "deadline": "2024-04-20T23:59:59",
           "timezone": "UTC-3",
-          "description": "Assignment 2 Exercise 6"
+          "description": "Assignment 2"
         },
         {
-          "function_id": "A1-E1",
+          "class_day": "A1",
           "deadline": "2024-04-15T23:59:59",
           "timezone": "UTC-3",
-          "description": "Assignment 1 Exercise 1"
+          "description": "Assignment 1"
         }
       ]
     }
