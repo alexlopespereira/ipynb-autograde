@@ -17,19 +17,9 @@ df_questions = df_questions.drop_duplicates(subset=['function_id'])
 df_questions['class_day'] = df_questions['function_id'].str.extract(r'(A\d+)')
 df_questions['exercise_number'] = df_questions['function_id'].str.extract(r'E(\d+)')
 
-# Drop the function_id column
-df_questions = df_questions.drop('function_id', axis=1)
-
-# Load deadlines.json
-with open('data/deadlines.json', 'r') as f:
-    deadlines_data = json.load(f)
-
-# Create DataFrame from mba_enap deadlines
-df_deadlines = pd.DataFrame(deadlines_data['mba_enap']['deadlines'])
-
 # Merge the DataFrames on class_day
-df_merged = pd.merge(df_questions, df_deadlines, on='class_day', how='left')
+function_counts = df_questions.groupby('class_day').size().sort_values(ascending=False)
 
-df_merged.to_csv('data/merged_data.csv', index=False)
+function_counts.to_csv('data/merged_data.csv')
 # Display first few rows of the merged DataFrame
-print(df_merged.head())
+print(function_counts)
