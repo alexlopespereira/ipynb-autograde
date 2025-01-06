@@ -166,7 +166,10 @@ def validate(user_prompt, exercise_number):
         print(f"Error: {response.status_code} - {response.reason}")
         print("Details:", response.text)
     else:
-        print_test_results(response.json())
+        if "-R" not in exercise_number:
+            print_test_results(response.json())
+        else:
+            print("Your answer has been submitted. Please wait for the instructor to grade it.")
         # print("Server Response:", response.json())
 
 
