@@ -1,6 +1,4 @@
 [
-  
-  
   {"input": [6], "expected": "oooooo\no    o\no    o\no    o\no    o\noooooo", "function_id": "A2-E11", "testcase_id": "2"},
   {"input": [5], "expected": "ooooo\no   o\no   o\no   o\nooooo", "function_id": "A2-E11", "testcase_id": "1"},
   {"input": [6], "expected": "     o\n    ooo\n   ooooo\n  ooooooo\n ooooooooo\nooooooooooo", "function_id": "A2-E10", "testcase_id": "2"},
@@ -50,6 +48,7 @@
   {"input": [{"carro": [10, 30], "moto": [20], "trem": [5], "caminhao": [20] }], "expected": "carro,10,30\nmoto,20\ntrem,5\ncaminhao,20", "function_id": "A3-E5", "testcase_id": "1"},
   {"input": [[ ["carro", 10], ["moto", 20], ["trem", 5], ["carro", 30], ["caminhao", 20] ]],    "expected": {"carro": [10, 30], "moto": [20], "trem": [5], "caminhao": [20]}, "function_id": "A3-E4", "testcase_id": "1"},
   {"input": [[{"item": "carro", "quantidade": 400},   {"item": "moto", "quantidade": 300},   {"item": "carro", "quantidade": 750}]],    "expected": {"carro": 1150, "moto": 300}, "function_id": "A3-E3", "testcase_id": "1"},
+  {"input": [{"A": "V1", "C": "V1", "K": "Z4", "U": "T10", "M": "C5", "V": "Z4"}], "expected": {"A": "V1", "K": "Z4", "U": "T10", "M": "C5"}, "function_id": "A3-E2", "testcase_id": "2"},
   {"input": [{"1": 1, "2": 1, "3": 9, "4": 1, "5": 25}], "expected": {"1": 1, "3": 9, "5": 25}, "function_id": "A3-E2", "testcase_id": "1"},
   {"input": [5], "expected": {"1": 1, "2": 4, "3": 9, "4": 16, "5": 25}, "function_id": "A3-E1", "testcase_id": "1"},
 

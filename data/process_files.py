@@ -1,4 +1,4 @@
-import json
+""" import json
 import pandas as pd
 
 # Load questions.json and create DataFrame without input, expected, and requirements
@@ -22,4 +22,29 @@ function_counts = df_questions.groupby('class_day').size().sort_values(ascending
 
 function_counts.to_csv('data/merged_data.csv')
 # Display first few rows of the merged DataFrame
-print(function_counts)
+print(function_counts) """
+
+import json
+
+with open('data/questions.json', 'r') as f:
+    questions = json.load(f)
+
+function_ids = sorted(set(q["function_id"] for q in questions))
+
+print(f"Total distinct function_ids: {len(function_ids)}")
+print("\nFunction IDs grouped by assignment:")
+
+current_assignment = None
+counts = {}
+for fid in function_ids:
+    assignment = fid.split('-')[0]
+    if assignment not in counts:
+        counts[assignment] = 0
+    counts[assignment] += 1
+
+total = 0
+for assignment, count in sorted(counts.items()):
+    print(f"\n{assignment}: {count} functions")
+    total += count
+
+print(f"\nTotal functions: {total}")
