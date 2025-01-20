@@ -36,7 +36,7 @@
   {"input": [[-10, 19099, 102, 3404, 245], 102], "expected": [102], "function_id": "A3-E13", "testcase_id": "1"},
   {"input": [[0, 12, 45, 34, 99], 40], "expected": [45], "function_id": "A3-E13", "testcase_id": "2"},
   {"input": [[1, 3, 4], 2], "expected": [1, 3], "function_id": "A3-E13", "testcase_id": "3"},
-  {"input": ["https://www.servicos.gov.br/api/v1/servicos/orgao/315"], "expected": "45.59%", "function_id": "A3-E12", "testcase_id": "1"},
+  {"input": ["https://www.servicos.gov.br/api/v1/servicos/orgao/315"], "expected": "45.37%", "function_id": "A3-E12", "testcase_id": "1"},
   {"input": ["https://www.servicos.gov.br/api/v1/servicos/orgao/315"], "expected": {"13387": {"nome": "Solicitar doação de material de divulgação em triatomíneos (barbeiros - vetores da doença de Chagas) - Fiocruz/RJ",
   "sigla": "",  "servicoDigital": "Sim",  "nomeOrgao": "Fundação Oswaldo Cruz (FIOCRUZ)"}, "9026": {"nome": "Solicitar cópia de vídeos do Acervo da VídeoSaúde Distribuidora - Fiocruz",  "sigla": "", "servicoDigital": "Não",  "nomeOrgao": "Fundação Oswaldo Cruz (FIOCRUZ)"}, "13388": {"nome": "Solicitar identificação de moluscos terrestres - Fiocruz/RJ",  "sigla": "",  "servicoDigital": "Não",  "nomeOrgao": "Fundação Oswaldo Cruz (FIOCRUZ)"}
 }, "function_id": "A3-E11", "testcase_id": "1"},
