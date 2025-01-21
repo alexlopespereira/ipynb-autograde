@@ -171,7 +171,7 @@ def validate(user_prompt, exercise_number):
         if "-R" not in exercise_number:
             print_test_results(result)
         else:
-            print(f"Chatgpt graded your answer as: {result['grade']}")
+            print(f"Chatgpt graded your answer as: {result['passed']}")
             print(f"Chatgpt feedback was: {result['feedback']}")
         # print("Server Response:", response.json())
 
