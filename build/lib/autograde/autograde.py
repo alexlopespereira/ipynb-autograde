@@ -167,10 +167,12 @@ def validate(user_prompt, exercise_number):
         print(f"Error: {response.status_code} - {response.reason}")
         print("Details:", response.text)
     else:
+        result = response.json()
         if "-R" not in exercise_number:
-            print_test_results(response.json())
+            print_test_results(result)
         else:
-            print("Your answer has been submitted. Please wait for the instructor to grade it.")
+            print(f"Chatgpt graded your answer as: {result['grade']}")
+            print(f"Chatgpt feedback was: {result['feedback']}")
         # print("Server Response:", response.json())
 
 
