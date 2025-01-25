@@ -153,7 +153,7 @@ def validate(user_prompt, exercise_number):
 
     response = requests.post(
         #"https://seal-app-pmncf.ondigitalocean.app/api/validate",
-        "https://us-central1-autograde-314802.cloudfunctions.net/validate_code",
+        "https://us-central1-autograde-314802.cloudfunctions.net/validate_code_dev",
         headers=headers,
         json={
                 "prompt": user_prompt,
