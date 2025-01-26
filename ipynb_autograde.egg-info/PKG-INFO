@@ -1,9 +1,9 @@
 Metadata-Version: 2.1
 Name: ipynb-autograde
-Version: 0.0.97
+Version: 0.0.98
 Summary: Autograde for ipynb
 Home-page: https://github.com/alexlopespereira/ipynb-autograde
-Download-URL: https://github.com/alexlopespereira/ipynb-autograde/archive/v0.0.97.tar.gz
+Download-URL: https://github.com/alexlopespereira/ipynb-autograde/archive/v0.0.98.tar.gz
 Author: Alex Lopes Pereira
 Author-email: alexlopespereira@gmail.com
 License: GNU Lesser General Public License v3.0
