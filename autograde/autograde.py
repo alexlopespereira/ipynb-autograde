@@ -8,7 +8,6 @@ import numpy as np
 import pandas as pd
 import os
 from IPython import get_ipython
-from IPython.display import display, Markdown
 
 
 def get_support_data():
@@ -95,25 +94,25 @@ def print_test_results(result):
 
     :param result: Dictionary containing the result data.
     """
-    display(Markdown("### Generated Code:"))
-    display(Markdown(f"```python\n{result['code']}\n```"))
+    if "code" in result:
+        print(f"Codigo gerado: \n{result['code']}")
 
     # Check if there's only one test case
     if len(result["test_results"]) == 1:
         test = result["test_results"][0]
         if test["passed"]:
-            display(Markdown("\n✅ **Passed the Test Case!**"))
-            display(Markdown(f"* Expected: `{test['expected']}`"))
-            display(Markdown(f"* Delivered: `{test['actual']}`"))
+            print("\n✅ Passed the Test Case!")
+            print(f"  Expected: {test['expected']}")
+            print(f"  Delivered: {test['actual']}")
         else:
-            display(Markdown("\n❌ **Failed the Test Case:**"))
-            display(Markdown(f"* Expected: `{test['expected']}`"))
+            print("\n❌ Failed the Test Case:")
+            print(f'  Expected: {test["expected"]}')
             if test["actual"] is None or not test["actual"]:
-                display(Markdown(f"* Error: `{test['error']}`"))
+                print(f'  Error: {test["error"]}')
                 if "prompt_feedback" in result:
-                    display(Markdown(f"\n**Prompt Feedback:** {result['prompt_feedback']}"))
+                    print(f'\nPrompt Feedback: {result["prompt_feedback"]}')
             else:
-                display(Markdown(f"* Delivered: `{test['actual']}`"))
+                print(f'  Delivered: {test["actual"]}')
 
     else:
         # Separate passed and failed tests
@@ -122,24 +121,24 @@ def print_test_results(result):
 
         # Print passed tests with details
         if passed_tests:
-            display(Markdown("\n✅ **Passed Test Cases:**"))
+            print("\n✅ Passed Test Cases:")
             for test in passed_tests:
-                display(Markdown(f"* Test ID {test['testcase_id']}: `{test['expected']}`"))
+                print(f"  - Test ID: {test['testcase_id']}: {test['expected']}")
         else:
-            display(Markdown("\n✅ **No tests passed.**"))
+            print("\n✅ No tests passed.")
 
         # Print failed tests with detailed information
         if failed_tests:
-            display(Markdown("\n❌ **Failed Test Cases:**"))
+            print("\n❌ Failed Test Cases:")
             for test in failed_tests:
-                display(Markdown(f"* Test ID {test['testcase_id']}:"))
-                display(Markdown(f"  * Expected: `{test['expected']}`"))
+                print(f"  - Test ID: {test['testcase_id']}")
+                print(f"    Expected: {test['expected']}")
                 if test["actual"] is None:
-                    display(Markdown(f"  * Error while running the code: `{test['error']}`"))
+                    print(f"    Error while running the code: {test['error']}")
                     if "prompt_feedback" in result:
-                        display(Markdown(f"\n**Prompt Feedback:** {result['prompt_feedback']}"))
+                        print(f'\nPrompt Feedback: {result["prompt_feedback"]}')
                 else:
-                    display(Markdown(f"  * Delivered: `{test['actual']}`"))
+                    print(f"    Delivered: {test['actual']}")
 
 
 def validate(user_prompt, exercise_number, prompt_feedback=False):
@@ -175,8 +174,8 @@ def validate(user_prompt, exercise_number, prompt_feedback=False):
         if "-R" not in exercise_number:
             print_test_results(result)
         else:
-            display(Markdown(f"**ChatGPT graded your answer as:** {result['passed']}"))
-            display(Markdown(f"**ChatGPT feedback:** {result['feedback']}"))
+            print(f"Chatgpt graded your answer as: {result['passed']}")
+            print(f"Chatgpt feedback was: {result['feedback']}")
         # print("Server Response:", response.json())
 
 
