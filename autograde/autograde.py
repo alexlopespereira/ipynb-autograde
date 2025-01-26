@@ -94,7 +94,6 @@ def print_test_results(result):
 
     :param result: Dictionary containing the result data.
     """
-    #print(f"Codigo gerado: \n{result}")
     print(f"Codigo gerado: \n{result['code']}")
 
     # Check if there's only one test case
@@ -109,6 +108,8 @@ def print_test_results(result):
             print(f'  Expected: {test["expected"]}')
             if test["actual"] is None or not test["actual"]:
                 print(f'  Error: {test["error"]}')
+                if "prompt_feedback" in result:
+                    print(f'\nPrompt Feedback: {result["prompt_feedback"]}')
             else:
                 print(f'  Delivered: {test["actual"]}')
 
@@ -133,10 +134,10 @@ def print_test_results(result):
                 print(f"    Expected: {test['expected']}")
                 if test["actual"] is None:
                     print(f"    Error while running the code: {test['error']}")
+                    if "prompt_feedback" in result:
+                        print(f'\nPrompt Feedback: {result["prompt_feedback"]}')
                 else:
                     print(f"    Delivered: {test['actual']}")
-        #else:
-        #    print("\n❌ No tests failed.")
 
 
 def validate(user_prompt, exercise_number):
