@@ -94,7 +94,8 @@ def print_test_results(result):
 
     :param result: Dictionary containing the result data.
     """
-    print(f"Codigo gerado: \n{result['code']}")
+    if "code" in result:
+        print(f"Codigo gerado: \n{result['code']}")
 
     # Check if there's only one test case
     if len(result["test_results"]) == 1:
