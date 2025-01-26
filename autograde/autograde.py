@@ -141,7 +141,7 @@ def print_test_results(result):
                     print(f"    Delivered: {test['actual']}")
 
 
-def validate(user_prompt, exercise_number):
+def validate(user_prompt, exercise_number, prompt_feedback=False):
     """
     :param user_prompt: Prompt describing the function
     :param exercise_number: Number of the exercise for submission
@@ -161,7 +161,8 @@ def validate(user_prompt, exercise_number):
                 "prompt": user_prompt,
                 "function_id": exercise_number,
                 "user_email": email,
-                "course": course
+                "course": course,
+                "prompt_feedback": prompt_feedback
             }
         )
 
