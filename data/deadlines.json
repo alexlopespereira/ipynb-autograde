@@ -33,7 +33,7 @@
         },
         {
           "class_day": "A7",
-          "deadline": "2025-01-31T09:00:00",
+          "deadline": "2025-01-31T23:59:59",
           "timezone": "UTC-3",
           "description": "Assignment 1"
         },
