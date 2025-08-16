@@ -51,17 +51,29 @@
         }
       ]
     },
-    "PROG2": {
+    "idp_mestrado": {
       "deadlines": [
         {
           "class_day": "A2",
-          "deadline": "2024-04-20T23:59:59",
+          "deadline": "2026-04-20T23:59:59",
           "timezone": "UTC-3",
           "description": "Assignment 2"
         },
         {
           "class_day": "A1",
-          "deadline": "2024-04-15T23:59:59",
+          "deadline": "2026-04-15T23:59:59",
+          "timezone": "UTC-3",
+          "description": "Assignment 1"
+        },
+        {
+          "class_day": "A3",
+          "deadline": "2026-04-20T23:59:59",
+          "timezone": "UTC-3",
+          "description": "Assignment 2"
+        },
+        {
+          "class_day": "A4",
+          "deadline": "2026-04-15T23:59:59",
           "timezone": "UTC-3",
           "description": "Assignment 1"
         }
