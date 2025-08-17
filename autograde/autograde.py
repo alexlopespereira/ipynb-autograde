@@ -222,5 +222,20 @@ def change_pct(df):
     df_pivot = df_merge.pivot('date', 'symbol', 'change_pct')
     return df_pivot
 
+DEBUG = True
+
 if __name__ == "__main__":
-    validate("crie uma função que recebe dois argumentos numericos e retorna a soma deles", "A2-E1")
+    if DEBUG:
+        # Mock the get_support_data function to avoid dependency on gcloud and IPython
+        def mock_get_support_data():
+            return 'idp_mestrado', 'alexlopespereira@gmail.com', 'fake_token'
+
+        get_support_data = mock_get_support_data
+
+        os.environ['COURSE'] = 'idp_mestrado'
+        user_prompt = ("Escreva uma função Python chamada convert_temperature que use numpy para converter temperaturas entre Celsius e Fahrenheit. A função recebe:\n"
+                       "    Uma string ('Celsius' ou 'Fahrenheit') para determinar o tipo de conversão. Se receber \"Celsius\", a função deve converter de Fahrenheit para Celsius. Se receber \"Fahrenheit\", a função deve converter de Celsius para Fahrenheit.\n"
+                       "    Uma lista de numeros e os converte para um array numpy com as temperaturas. Armazene o resultado com uma casa decimal arredondado para baixo. O resultado deve ser convertido de volta para list. Se refira a biblioteca numpy pelo seu apelido np")
+        validate(user_prompt, "A1-E1")
+    else:
+        validate("crie uma função que recebe dois argumentos numericos e retorna a soma deles", "A2-E1")
